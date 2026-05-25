@@ -30,4 +30,27 @@ void setVerticesAresta(Aresta a, Vertice v1, Vertice v2){
         printf("Erro em setVerticesAresta\n");
         return;
     }
+    stAresta* ar = (stAresta*)a;
+    ar->v1 = v1;
+    ar->v2 = v2;
+}
+
+char* getNomeAresta(Aresta a){
+    return ((stAresta*)a)->nome;
+}
+
+char* getCEP_ladoDireitoAresta(Aresta a){
+    return ((stAresta*)a)->ldir;
+}
+
+char* getCEP_ladoEsquerdoAresta(Aresta a){
+    return ((stAresta*)a)->lesq;
+}
+
+double getCmpAresta(Aresta a){
+    return ((stAresta*)a)->cmp;
+}
+
+double getVmAresta(Aresta a){
+    return ((stAresta*)a)->vm;
 }
