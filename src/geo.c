@@ -1,7 +1,7 @@
 #include "geo.h"
 #include <string.h>
 
-void lerGeo(FILE* geo, FILE* svg, Lista quadras) {
+void lerGeo(FILE* geo, FILE* svg, Arvore quadras) {
     if (geo == NULL || svg == NULL) {
         printf("Erro em lerGeo\n");
         return;
@@ -42,15 +42,13 @@ void lerGeo(FILE* geo, FILE* svg, Lista quadras) {
             setDimensoesQuadra(novaQuadra, x, y, w, h);
             setPreenchimentoQuadra(novaQuadra, sw, cfill, cstrk);
 
-            insereLista(quadras, novaQuadra);
+            inserirArvore(novaQuadra, quadras);
 
             desenharRetanguloSVG(svg, novaQuadra);
             liberarQuadra(novaQuadra);
 
         } else if (strcmp(comando, "cq") == 0) {
-            /* Lê: cq sw cfill cstrk — define as cores para as próximas quadras */
-            int lidos = sscanf(&linha[strlen(comando)], " %15s %31s %31s",
-                               sw, cfill, cstrk);
+            int lidos = sscanf(&linha[strlen(comando)], " %15s %31s %31s",sw, cfill, cstrk);
             if (lidos != 3) {
                 printf("Erro ao ler comando 'cq': formato invalido\n");
             }
