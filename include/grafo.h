@@ -8,10 +8,12 @@
     Arquivo responsável por criar e manipular um grafo
 */
 typedef void* Grafo;
+typedef void* VerticeGrafo;
+typedef void* ArestaGrafo;
 
 Grafo criarGrafo();
 
-void inserirGrafo(Grafo g, Vertice v);
+void inserirVerticeGrafo(Grafo g, void* conteudo);
 
 void removerGrafo(Grafo g, Vertice v);
 
