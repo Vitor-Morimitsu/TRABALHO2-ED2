@@ -22,26 +22,26 @@ void lerVia(FILE* via,Arvore quadras,Grafo grafo){
                 printf("Erro em lerVia no comando nv\n");
                 return;
             }
-        }else if(strcmp(comando, 'v') == 0){
+        }else if(strcmp(comando, "v") == 0){
             //cria o vertice id posicionado nas coordenadas [x,y]
-            char* idVertice;
+            char idVertice[64];
             float x = 0;
             float y = 0;
-            int lidos = sscanf(&linha[strlen(comando)], "v %s %f %f", idVertice, &x,&y);
+            int lidos = sscanf(&linha[strlen(comando)], " %s %f %f", idVertice, &x,&y);
             if(lidos != 3){
                 printf("Erro em lerVia no comando v\n");
                 return;
             }
             Vertice novoVertice = criarVertice(idVertice,x,y); //----------------------------------------------------------------terminar pois não sei onde inserir o vertice criado(arvore ou grafo)
-        }else if(strcmp(comando, 'e') == 0){
+        }else if(strcmp(comando, "e") == 0){
             //cria a aresta (i,j) e associa as outras informações à aresta. Caso a aresta não possua quadras em algum de seus lados,esta ausência é indicada por um hífen (-)
-            char* idVerticeInicio;
-            char* idVerticeFim;
-            char* cepEsquerda;
-            char* cepDireita;
+            char idVerticeInicio[64];
+            char idVerticeFim[64];
+            char cepEsquerda[64];
+            char cepDireita[64];
             double cmp, vm;
-            char* nome;
-            int lidos = sscanf(&linha[strlen(comando)], "e %s %s %s %s %lf %lf %lf", idVerticeInicio,idVerticeFim,cepDireita,cepEsquerda,
+            char nome[100];
+            int lidos = sscanf(&linha[strlen(comando)], " %s %s %s %s %lf %lf %lf", idVerticeInicio,idVerticeFim,cepDireita,cepEsquerda,
                     &cmp,&vm, nome);
             if(lidos != 7){
                 printf("Erro em lerVia no comando e\n");

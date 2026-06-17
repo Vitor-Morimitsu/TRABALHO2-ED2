@@ -23,6 +23,7 @@ Aresta criarAresta(char* nome, char* ldir, char* lesq, double cmp,double vm){
     a->vm = vm;
     a->v1 = NULL;
     a->v2 = NULL;
+    return a;
 }
 
 void setVerticesAresta(Aresta a, Vertice v1, Vertice v2){

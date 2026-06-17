@@ -32,10 +32,10 @@ void* buscarCelula(char* chave, CelulaArvore cel){
         return celula->conteudo;
     }else if(resultado > 0){
         //a quadra está para a direita 
-        return buscarArvore(chave, celula->direita);
+        return buscarCelula(chave, celula->direita);
     }else{
         //a quadra está para a esquerda
-        return buscarArvore(chave, celula->esquerda);
+        return buscarCelula(chave, celula->esquerda);
     }
 
 }
@@ -49,16 +49,7 @@ void* buscarArvore(char* chave, Arvore a){
     return buscarCelula(chave, arv->raiz);
 }
 
-void inserirArvore(void* cont, Arvore a){
-    if(cont == NULL||a == NULL){
-        printf("Erro em inserirArvore/n");
-        return;
-    }
-    stArvore* arv = (stArvore*)a;
-    arv->raiz = inserirCelula(arv->raiz, cont);
-}
-
-static stCelula* inserirCelula(stCelula* cel, void* conteudo){
+stCelula* inserirCelula(stCelula* cel, void* conteudo){
     //insere no espaço vazio
     if (cel == NULL) {
         stCelula* nova = calloc(1, sizeof(stCelula));
@@ -84,27 +75,27 @@ static stCelula* inserirCelula(stCelula* cel, void* conteudo){
     return cel; 
 }
 
-void liberarArvore(Arvore a){
-    if(a == NULL){
-        printf("Erro em liberar árvore/n");
+void inserirArvore(void* cont, Arvore a){
+    if(cont == NULL||a == NULL){
+        printf("Erro em inserirArvore/n");
         return;
     }
+    stArvore* arv = (stArvore*)a;
+    arv->raiz = inserirCelula(arv->raiz, cont);
+}
+
+static void liberarCelula(stCelula* cel){
+    if(cel == NULL) return;
+    liberarCelula(cel->esquerda);
+    liberarCelula(cel->direita);
+    free(cel->conteudo);
+    free(cel);
+}
+
+void liberarArvore(Arvore a){
+    if(a == NULL)return;
     stArvore* arvore = (stArvore*)a;
-    stCelula* cel =arvore->raiz;
-    while(cel != NULL){
-        if(cel == NULL){
-            //chegou ao ultimo elemento
-            free(cel->conteudo);
-            free(cel);
-            
-            cel = arvore->raiz;
-        }else if(cel->esquerda != NULL){
-            //tem coisa na celula da esquerda
-            cel = cel->esquerda;
-        }else if(cel->direita != NULL){
-            //tem coisa na celula da direita
-            cel = cel->direita;
-        }
-    }
+    liberarCelula(arvore->raiz);
+    free(arvore);
 }
 

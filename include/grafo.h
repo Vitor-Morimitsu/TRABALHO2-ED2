@@ -11,12 +11,31 @@ typedef void* Grafo;
 typedef void* VerticeGrafo;
 typedef void* ArestaGrafo;
 
+/// @brief Cria e retorna um grafo
+/// @return Grafo criado
 Grafo criarGrafo();
 
-void inserirVerticeGrafo(Grafo g, void* conteudo);
+/// @brief Insere um vertice no grafo
+/// @param g Grafo
+/// @param v Vertice
+/// @return Retorna o indice 
+int inserirVerticeGrafo(Grafo g, Vertice v);
 
-void removerGrafo(Grafo g, Vertice v);
+/// @brief Insere uma aresta entre dois índices
+/// @param g Grafo
+/// @param origem Origem da aresta
+/// @param destino Destino da aresta
+/// @param dados Dados da aresta
+void inserirArestaGrafo(Grafo g, int origem, int destino, Aresta dados);
 
-void liberarGrafo(Grafo g, Vertice v);
+/// @brief Busca um vertice com base na id
+/// @param g Grafo
+/// @param id id do vertice
+/// @return id do vertice
+int buscarVerticePorID(Grafo g, char* id);
+
+/// @brief Libera a memória do grafo
+/// @param g Grafo
+void liberarGrafo(Grafo g);
 
 #endif

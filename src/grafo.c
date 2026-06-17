@@ -1,20 +1,21 @@
 #include "grafo.h"
 
-typedef struct verticeGrafo{
-    void* conteudo;
-    struct verticeGrafo* arestas; //vetor que armazena as aresta adjacentes
-}stVerticeGrafo;
+typedef struct stCelulaAresta {
+    int destino; //indice do vertice de destino   
+    Aresta dados;                
+    struct stCelulaAresta* prox; 
+} stCelulaAresta;
 
-typedef struct arestaGrafo{
-    int destino; //indice do vertice de destino
-    struct arestaGrafo* prox; //proxima aresta da lista
-}stArestaGrafo;
+typedef struct {
+    Vertice dados; 
+    stCelulaAresta* arestas; 
+} stVerticeGrafo;
 
-typedef struct{
+typedef struct {
     stVerticeGrafo* vertices; //array de vertices
     int numVertices;
     int capacidade;
-}stGrafo;
+} stGrafo;
 
 Grafo criarGrafo(){
     stGrafo* grafo = malloc(sizeof(stGrafo));
@@ -23,7 +24,7 @@ Grafo criarGrafo(){
         return NULL;
     }
     grafo->numVertices = 0;
-    grafo->capacidade = 5;
+    grafo->capacidade = 10;
     grafo->vertices = calloc(grafo->capacidade,sizeof(stVerticeGrafo));
     if(grafo->vertices == NULL){
         free(grafo);
@@ -32,20 +33,73 @@ Grafo criarGrafo(){
     return (Grafo)grafo;
 }
 
-void inserirVerticeGrafo(Grafo g, void* conteudo){
+int inserirVerticeGrafo(Grafo g, Vertice v){
     stGrafo* grafo = (stGrafo*)g;
-    if(grafo->numVertices >= grafo->capacidade){
-        //o grafo está cheio
+    //se o array estiver cheio, dobra a capacidade
+    if (grafo->numVertices >= grafo->capacidade) {
         int novaCapacidade = grafo->capacidade * 2;
-        stVerticeGrafo* temp = realloc(grafo->vertices, novaCapacidade* sizeof(stVerticeGrafo));
-        if(temp == NULL){
+        stVerticeGrafo* temp = realloc(grafo->vertices,novaCapacidade * sizeof(stVerticeGrafo));
+        if (temp == NULL) {
             printf("Erro ao expandir o grafo\n");
-            return;
+            return -1; 
         }
+        grafo->vertices = temp;
+        grafo->capacidade = novaCapacidade;
     }
+
+    int idx = grafo->numVertices;
+    grafo->vertices[idx].dados = v;
+    grafo->vertices[idx].arestas = NULL; 
+    grafo->numVertices++;
+    return idx;
 
 }
 
-void removerGrafo(Grafo g, Vertice v);
+int buscarVerticePorID(Grafo g, char* id){
+    stGrafo* grafo = (stGrafo*)g;
+    for(int i = 0; i< grafo->numVertices;i++){
+        if(strcmp(getIDVertice(grafo->vertices[i].dados),id) == 0){
+            return i;
+        }
+    }
+    return -1; //não encontrou
+}
 
-void liberarGrafo(Grafo g, Vertice v);
+void inserirArestaGrafo(Grafo g, int origem, int destino, Aresta dados){
+    stGrafo* grafo = (stGrafo*)g;
+
+    if (origem < 0 || origem >= grafo->numVertices ||
+        destino < 0 || destino >= grafo->numVertices) {
+        printf("Erro em inserirArestaGrafo: índice inválido\n");
+        return;
+    }
+
+    stCelulaAresta* nova = malloc(sizeof(stCelulaAresta));
+    if (nova == NULL) {
+        printf("Erro ao alocar célula de aresta\n");
+        return;
+    }
+    nova->destino = destino;
+    nova->dados = dados;
+    nova->prox = grafo->vertices[origem].arestas; // insere na cabeça
+    grafo->vertices[origem].arestas = nova;
+}
+
+void liberarGrafo(Grafo g){
+    if (g == NULL) return;
+    stGrafo* grafo = (stGrafo*)g;
+
+    for (int i = 0; i < grafo->numVertices; i++) {
+        stCelulaAresta* atual = grafo->vertices[i].arestas;
+        while (atual != NULL) {
+            stCelulaAresta* prox = atual->prox;
+            free(atual->dados); 
+            free(atual);         
+            atual = prox;
+        }
+        free(grafo->vertices[i].dados);
+    }
+
+    free(grafo->vertices); 
+    free(grafo);           
+}
