@@ -49,4 +49,8 @@ double getCmpAresta(Aresta a);
 /// @return Velocidade media
 double getVmAresta(Aresta a);
 
+/// @brief Libera a memória alocada para uma aresta
+/// @param a Aresta
+void liberarAresta(Aresta a);
+
 #endif

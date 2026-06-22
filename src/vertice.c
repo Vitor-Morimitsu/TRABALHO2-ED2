@@ -30,3 +30,13 @@ double getXVertice(Vertice v){
 double getYVertice(Vertice v){
     return ((stVertice*)v)->y;
 }
+
+void liberarVertice(Vertice v){
+    if(v == NULL){
+        printf("Erro em liberarVertice\n");
+        return;
+    }
+    stVertice* vertice = (stVertice*)v;
+    free(vertice->id);
+    free(vertice);
+}

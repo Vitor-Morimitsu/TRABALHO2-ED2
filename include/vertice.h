@@ -30,4 +30,8 @@ double getXVertice(Vertice v);
 /// @return Coordenada y
 double getYVertice(Vertice v);
 
+/// @brief Libera a memória alocada para um vértice
+/// @param v Vertice que será liberado
+void liberarVertice(Vertice v);
+
 #endif

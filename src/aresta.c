@@ -58,3 +58,17 @@ double getCmpAresta(Aresta a){
 double getVmAresta(Aresta a){
     return ((stAresta*)a)->vm;
 }
+
+void liberarAresta(Aresta a){
+    if(a == NULL){
+        printf("Erro em liberarAresta\n");
+        return;
+    }
+    stAresta* aresta = (stAresta*)a;
+    free(aresta->nome);
+    free(aresta->ldir);
+    free(aresta->lesq);
+    liberarVertice(aresta->v1);
+    liberarVertice(aresta->v2);
+    free(aresta);
+}
