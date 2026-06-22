@@ -27,6 +27,16 @@ void inserirFilaPrioridades(FilaPrioridades fila, int idVertice, double parametr
 /// @param fila Fila de prioridades
 void removerFilaPrioridades(FilaPrioridades fila);
 
+/// @brief Retorna o Id do vértice do topo
+/// @param fila fila
+/// @return id
+int getIdVerticeTopo(FilaPrioridades fila);
+
+/// @brief Retorna o parametro do topo da fila
+/// @param fila fila
+/// @return parametro
+double getParametroTopo(FilaPrioridades fila);
+
 /// @brief Libera a memoria alocada por uma fila de prioridades
 /// @param fila Fila de prioridades
 void liberarFila(FilaPrioridades fila);

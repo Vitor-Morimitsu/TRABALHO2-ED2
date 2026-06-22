@@ -83,6 +83,16 @@ void removerFilaPrioridades(FilaPrioridades fila){
     }
 }
 
+int getIdVerticeTopo(FilaPrioridades fila) {
+    stFila* f = (stFila*)fila;
+    return f->inicio->idVertice;
+}
+
+double getParametroTopo(FilaPrioridades fila) {
+    stFila* f = (stFila*)fila;
+    return f->inicio->parametro;
+}
+
 void liberarFila(FilaPrioridades fila){
     stFila* f = (stFila*)fila;
     if(f == NULL) return;

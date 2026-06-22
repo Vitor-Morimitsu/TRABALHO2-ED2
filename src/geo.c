@@ -45,7 +45,6 @@ void lerGeo(FILE* geo, FILE* svg, Arvore quadras) {
             inserirArvore(novaQuadra, quadras);
 
             desenharRetanguloSVG(svg, novaQuadra);
-            liberarQuadra(novaQuadra);
 
         } else if (strcmp(comando, "cq") == 0) {
             int lidos = sscanf(&linha[strlen(comando)], " %15s %31s %31s",sw, cfill, cstrk);

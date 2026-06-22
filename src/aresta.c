@@ -16,9 +16,12 @@ Aresta criarAresta(char* nome, char* ldir, char* lesq, double cmp,double vm){
         printf("Erro ao criar a aresta\n");
         return NULL;
     }
-    a->nome = nome;
-    a->ldir = ldir;
-    a->lesq = lesq;
+    a->nome = malloc(strlen(nome) + 1);
+    strcpy(a->nome, nome);
+    a->ldir = malloc(strlen(ldir) + 1);
+    strcpy(a->ldir, ldir);
+    a->lesq = malloc(strlen(lesq) + 1);
+    strcpy(a->lesq, lesq);
     a->cmp = cmp;
     a->vm = vm;
     a->v1 = NULL;

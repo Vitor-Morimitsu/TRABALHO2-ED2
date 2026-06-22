@@ -32,7 +32,9 @@ void lerVia(FILE* via,Arvore quadras,Grafo grafo){
                 printf("Erro em lerVia no comando v\n");
                 return;
             }
-            Vertice novoVertice = criarVertice(idVertice,x,y); //----------------------------------------------------------------terminar pois não sei onde inserir o vertice criado(arvore ou grafo)
+            Vertice novoVertice = criarVertice(idVertice,x,y); 
+            inserirVerticeGrafo(grafo, novoVertice);
+
         }else if(strcmp(comando, "e") == 0){
             //cria a aresta (i,j) e associa as outras informações à aresta. Caso a aresta não possua quadras em algum de seus lados,esta ausência é indicada por um hífen (-)
             char idVerticeInicio[64];
@@ -47,10 +49,11 @@ void lerVia(FILE* via,Arvore quadras,Grafo grafo){
                 printf("Erro em lerVia no comando e\n");
                 return;
             }
-            Vertice inicio =  buscarArvore(idVerticeInicio, quadras);
-            Vertice fim = buscarArvore(idVerticeFim,quadras);
+            int idxInicio = buscarVerticePorID(grafo, idVerticeInicio);
+            int idxFim    = buscarVerticePorID(grafo, idVerticeFim);
             Aresta novaAresta = criarAresta(nome, cepDireita,cepEsquerda,cmp,vm); //----------------------------------------------------------------terminar pois não sei onde inserir o vertice criado(arvore ou grafo)
-            setVerticesAresta(novaAresta, inicio, fim);            
+            inserirArestaGrafo(grafo, idxInicio,idxFim, novaAresta);
+                        
             
         }else {
             printf("Comando inválido em lerVia\n");
