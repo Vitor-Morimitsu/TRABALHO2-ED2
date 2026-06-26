@@ -16,28 +16,13 @@
 */
 void abrirSvg(FILE* arqSvg);
 
-/*
-    Função responsável por gerar uma quadra em SVG.
-*/
-void desenharRetanguloSVG(FILE* arqSvg, Quadra q);
+void svgComandoO(FILE* svg);
 
-///colocar um pequeno X vermelho no local da âncora da quadra removida.
-void comandoRqSvg(FILE* svg, float x, float y,float w, float h);
+void svgComandoRegs(FILE* svg);
 
-//marcar o endereço de destino na face correta da quadra com um pequeno quadrado vermelho preenchido
-void comandoMudSvg(FILE* svg, float x, float y, float w, float h, char face, char* cpf);
+void svgComandoExp(FILE* svg);
 
-/// Colocar uma pequena cruz vermelha no local do endereço (se morador)
-void comandoRipSvg(FILE* svg,float x, float y);
-
-///colocar número de moradores de cada face (próximo ao limite da face) e,no centro da quadra, o número total de moradores da quadra
-void comandoPqSvg(FILE* svg, Quadra q, int total, int n, int s, int l, int o);
-
-/// @brief colocar um pequeno círculo preto no local do despejo.
-/// @param svg Arquivo svg
-/// @param x coordenada x do círculo
-/// @param y coordenada y do círculo
-void comandoDspjSvg(FILE* svg, float x, float y);
+void svgComandoP(FILE* svg);
 
 /// @brief Realiza o comando de encerramento do arquivo svg
 /// @param arqSvg Arquivo

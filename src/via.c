@@ -20,17 +20,17 @@ void lerVia(FILE* via,Arvore quadras,Grafo grafo){
             int lidos = sscanf(&linha[strlen(comando)], "%i", &numeroVertices);
             if(lidos != 1){
                 printf("Erro em lerVia no comando nv\n");
-                return;
+                continue;
             }
         }else if(strcmp(comando, "v") == 0){
             //cria o vertice id posicionado nas coordenadas [x,y]
             char idVertice[64];
-            float x = 0;
-            float y = 0;
-            int lidos = sscanf(&linha[strlen(comando)], " %s %f %f", idVertice, &x,&y);
+            double x = 0;
+            double y = 0;
+            int lidos = sscanf(&linha[strlen(comando)], " %s %lf %lf", idVertice, &x,&y);
             if(lidos != 3){
                 printf("Erro em lerVia no comando v\n");
-                return;
+                continue;
             }
             Vertice novoVertice = criarVertice(idVertice,x,y); 
             inserirVerticeGrafo(grafo, novoVertice);
@@ -43,17 +43,20 @@ void lerVia(FILE* via,Arvore quadras,Grafo grafo){
             char cepDireita[64];
             double cmp, vm;
             char nome[100];
-            int lidos = sscanf(&linha[strlen(comando)], " %s %s %s %s %lf %lf %lf", idVerticeInicio,idVerticeFim,cepDireita,cepEsquerda,
+            int lidos = sscanf(&linha[strlen(comando)], " %s %s %s %s %lf %lf %s", idVerticeInicio,idVerticeFim,cepDireita,cepEsquerda,
                     &cmp,&vm, nome);
             if(lidos != 7){
                 printf("Erro em lerVia no comando e\n");
-                return;
+                continue;
             }
             int idxInicio = buscarVerticePorID(grafo, idVerticeInicio);
             int idxFim    = buscarVerticePorID(grafo, idVerticeFim);
-            Aresta novaAresta = criarAresta(nome, cepDireita,cepEsquerda,cmp,vm); //----------------------------------------------------------------terminar pois não sei onde inserir o vertice criado(arvore ou grafo)
-            inserirArestaGrafo(grafo, idxInicio,idxFim, novaAresta);
-                        
+            if (idxInicio == -1 || idxFim == -1) {
+                printf("Vértice não encontrado: %s ou %s\n", idVerticeInicio, idVerticeFim);
+                continue;
+            }
+            Aresta novaAresta = criarAresta(nome, cepDireita,cepEsquerda,cmp,vm); 
+            inserirArestaGrafo(grafo, idxInicio, idxFim, novaAresta);
             
         }else {
             printf("Comando inválido em lerVia\n");

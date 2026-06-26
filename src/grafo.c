@@ -93,7 +93,7 @@ void liberarGrafo(Grafo g){
         stCelulaAresta* atual = grafo->vertices[i].arestas;
         while (atual != NULL) {
             stCelulaAresta* prox = atual->prox;
-            free(atual->dados); 
+            liberarAresta(atual->dados);
             free(atual);         
             atual = prox;
         }

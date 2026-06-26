@@ -6,6 +6,7 @@
 #include "grafo.h"
 #include "vertice.h"
 #include "via.h"
+#include "registrador.h"
 
 /*
     Arquivo responsável pelas operações .qry no segundo trabalho de estrutura de dados 2
@@ -16,7 +17,31 @@
     Svg: linha vertical pontilhada vermelha mostrando a posição do endereço e colocar o numero do registrados na outra extremidade da linha(topo da pagina)
     Txt: reportar a coordenada relatica ao endereço
 */
-void comandoO(FILE* svg, FILE* txt,int numRegistrador, char* cep, char face, int num);
+
+/*
+    realiza o comando O? do arquivo qry.
+*/
+void comandoO(FILE* svg, FILE* txt,int numRegistrador, char* cep, char face, int num,Quadra quadra,  Registrador regs[]);
+
+/*
+    realiza o comando Mvm
+*/
+void comandoMvm(Grafo grafo,double velocidadeNova);
+
+/*
+    realiza o comando Regs
+*/
+void comandoRegs(FILE* svg, FILE* txt,Grafo grafo, double velocidadeInsuficiente);
+
+/*
+    Realiza o comando exp
+*/
+void comandoExp(Grafo grafo, double velocidadeInferior);
+
+/*
+    Realiza o comando P 
+*/
+void comandoP(FILE* svg, FILE* txt,Registrador reg1, Registrador reg2,char* cc, char* cr);
 
 /// @brief Função principal para ler o qry
 /// @param qry Arquivo qry
@@ -24,6 +49,7 @@ void comandoO(FILE* svg, FILE* txt,int numRegistrador, char* cep, char face, int
 /// @param txt Arquivo txt
 /// @param quadras Arvore que contenha as quadras
 /// @param grafo Grafo com os vertices
-void lerQry(FILE* qry, FILE* svg, FILE* txt, Arvore quadras, Grafo grafo);
+/// @param regs array de registradores
+void lerQry(FILE* qry, FILE* svg, FILE* txt, Arvore quadras, Grafo grafo,Registrador regs[]);
 
 #endif

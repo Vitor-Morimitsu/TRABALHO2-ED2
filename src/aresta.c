@@ -68,7 +68,5 @@ void liberarAresta(Aresta a){
     free(aresta->nome);
     free(aresta->ldir);
     free(aresta->lesq);
-    liberarVertice(aresta->v1);
-    liberarVertice(aresta->v2);
     free(aresta);
 }

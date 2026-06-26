@@ -36,6 +36,29 @@ int getNumRegistrador(Registrador r);
 /// @return numero de confirmação
 int getAtivoRegistrador(Registrador r);
 
+/// @brief seta o cep de um registrador
+/// @param r registrador
+/// @param cep cep
+void setCepRegistrador(Registrador r, char* cep);
+
+/// @brief seta a face de um registrador
+/// @param r registrador
+/// @param face face
+void setFaceRegistrador(Registrador r, char face);
+
+/// @brief seta o num de um registrador
+/// @param r registrador
+/// @param num numero
+void setNumRegistrador(Registrador r, int num);
+
+/// @brief ativa um registrador - seta a atividade para 1
+/// @param r registrador
+void ativarRegistrador(Registrador r);
+
+/// @brief desativa um registrador - seta a atividade para 0
+/// @param r registrador
+void desativarRegistrador(Registrador r);
+
 /// @brief libera a memoria alocada para registrador
 /// @param r registrador
 void liberarRegistrador(Registrador r);
