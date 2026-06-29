@@ -59,6 +59,10 @@ double getVmAresta(Aresta a){
     return ((stAresta*)a)->vm;
 }
 
+void setVmAresta(Aresta a, double novaVm){
+    ((stAresta*)a)->vm = novaVm;
+}
+
 void liberarAresta(Aresta a){
     if(a == NULL){
         printf("Erro em liberarAresta\n");

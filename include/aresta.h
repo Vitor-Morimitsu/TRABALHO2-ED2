@@ -44,6 +44,8 @@ char* getCEP_ladoEsquerdoAresta(Aresta a);
 /// @return comprimento
 double getCmpAresta(Aresta a);
 
+void setVmAresta(Aresta a, double novaVm);
+
 /// @brief Retorna a velocidade media(m/s) da via
 /// @param a aresta
 /// @return Velocidade media

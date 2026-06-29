@@ -13,7 +13,7 @@ Registrador criarRegistrador(char* cep, char face, int num){
     strcpy(r->cep, cep);
     r->face = face;
     r->num = num;
-    r->ativo = 0;
+    r->ativo = 1;
     return r;
 }
 
@@ -39,9 +39,9 @@ void setCepRegistrador(Registrador r, char* cep){
         return;
     }
     stRegistrador* reg = (stRegistrador*)r;
+    if( reg->cep != NULL) free(reg->cep);
     reg->cep = malloc(strlen(cep)+1);
     strcpy(reg->cep, cep);
-
 }
 
 void setFaceRegistrador(Registrador r, char face){

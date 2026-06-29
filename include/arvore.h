@@ -17,6 +17,8 @@ void inserirArvore(void* cont, Arvore a);
 
 void removerArvore(Quadra q, Arvore a);
 
+void* getRaizArvore(Arvore a);
+
 void* buscarCelula(char* chave, CelulaArvore cel);
 
 void* buscarArvore(char* chave, Arvore a);

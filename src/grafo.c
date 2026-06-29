@@ -55,7 +55,7 @@ int inserirVerticeGrafo(Grafo g, Vertice v){
 
 }
 
-int buscarVerticePorID(Grafo g, char* id){
+int buscarVerticeIDGrafo(Grafo g, char* id){
     stGrafo* grafo = (stGrafo*)g;
     for(int i = 0; i< grafo->numVertices;i++){
         if(strcmp(getIDVertice(grafo->vertices[i].dados),id) == 0){
@@ -83,6 +83,15 @@ void inserirArestaGrafo(Grafo g, int origem, int destino, Aresta dados){
     nova->dados = dados;
     nova->prox = grafo->vertices[origem].arestas; // insere na cabeça
     grafo->vertices[origem].arestas = nova;
+}
+
+stVerticeGrafo* getVerticeGrafo(Grafo g){
+    if(g == NULL){
+        printf("Erro em getVerticeGrafo\n");
+        return NULL;
+    }
+    stGrafo* grafo = (stGrafo*)g;
+    return grafo->vertices; 
 }
 
 void liberarGrafo(Grafo g){

@@ -49,8 +49,8 @@ void lerVia(FILE* via,Arvore quadras,Grafo grafo){
                 printf("Erro em lerVia no comando e\n");
                 continue;
             }
-            int idxInicio = buscarVerticePorID(grafo, idVerticeInicio);
-            int idxFim    = buscarVerticePorID(grafo, idVerticeFim);
+            int idxInicio = buscarVerticeIDGrafo(grafo, idVerticeInicio);
+            int idxFim    = buscarVerticeIDGrafo(grafo, idVerticeFim);
             if (idxInicio == -1 || idxFim == -1) {
                 printf("Vértice não encontrado: %s ou %s\n", idVerticeInicio, idVerticeFim);
                 continue;

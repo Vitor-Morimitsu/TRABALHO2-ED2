@@ -16,6 +16,8 @@
 */
 void abrirSvg(FILE* arqSvg);
 
+void desenharRetangulo(FILE* arqSvg, Quadra q);
+
 void svgComandoO(FILE* svg);
 
 void svgComandoRegs(FILE* svg);

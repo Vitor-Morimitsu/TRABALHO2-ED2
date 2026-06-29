@@ -22,11 +22,32 @@ void comandoO(FILE* svg, FILE* txt,int numRegistrador, char* cep, char face, int
 
 }
 
-void comandoMvm(Grafo grafo,double velocidadeNova, double x, double y, double w, double h){
-    //fazer dois ifs para ver as arestas que estão dentro do 
+void comandoMvm(Arvore quadras,Grafo grafo,double velocidadeNova, double x, double y, double w, double h){
+    bool loop = true;
+    while(loop){
+        //procurar a quadra com base nas coordenadas fornecidas pelos vértices do grafo
+        Quadra celArv = getRaizArvore(quadras);
+        double coordX = getXQuadra(celArv);
+        double coordY = getYQuadra(celArv);
+        
+        //fazer dois ifs para ver as arestas que estão dentro do 
+        if(coordX >= x && coordX <= x + w){
+            //dentro da area x
+            if(coordY >= y && coordY <= y + h){
+                //quadra está dentro da região
+                char* cep = getCEPQuadra(celArv);
+                Vertice v =  buscarVerticeIDGrafo(grafo, cep)
+            }else{
+                continue;
+            }
+        }else{
+            continue;
+        }
 
-    //vertices e arestas estão armazenados no grafo. Quadras estão armazenadas na arvore
-    Vertice v = 
+        //vertices e arestas estão armazenados no grafo. Quadras estão armazenadas na arvore
+        Vertice v = 
+
+    }
     
 }
 

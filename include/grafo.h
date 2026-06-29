@@ -28,11 +28,13 @@ int inserirVerticeGrafo(Grafo g, Vertice v);
 /// @param dados Dados da aresta
 void inserirArestaGrafo(Grafo g, int origem, int destino, Aresta dados);
 
+VerticeGrafo getVerticeGrafo(Grafo g);
+
 /// @brief Busca um vertice com base na id
 /// @param g Grafo
 /// @param id id do vertice
 /// @return id do vertice
-int buscarVerticePorID(Grafo g, char* id);
+int buscarVerticeIDGrafo(Grafo g, char* id);
 
 /// @brief Libera a memória do grafo
 /// @param g Grafo

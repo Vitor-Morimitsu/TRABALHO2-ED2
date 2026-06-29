@@ -2,6 +2,7 @@
 #define QRY_H
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "quadra.h"
 #include "grafo.h"
 #include "vertice.h"
@@ -21,12 +22,12 @@
 /*
     realiza o comando O? do arquivo qry.
 */
-void comandoO(FILE* svg, FILE* txt,int numRegistrador, char* cep, char face, int num,Quadra quadra,  Registrador regs[]);
+void comandoO(FILE* svg, FILE* txt,int numRegistrador, char* cep, char face, int num,Arvore quadras,  Registrador regs[]);
 
 /*
     realiza o comando Mvm
 */
-void comandoMvm(Grafo grafo,double velocidadeNova);
+void comandoMvm(Grafo grafo,double velocidadeNova, double x, double y, double w, double h);
 
 /*
     realiza o comando Regs

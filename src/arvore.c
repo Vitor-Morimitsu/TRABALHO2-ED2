@@ -49,6 +49,14 @@ void* buscarArvore(char* chave, Arvore a){
     return buscarCelula(chave, arv->raiz);
 }
 
+void* getRaizArvore(Arvore a){
+    if(a == NULL){
+        printf("Erro em getRaizArvore\n");
+        return NULL;
+    }
+    return ((stArvore*)a)->raiz;
+}
+
 stCelula* inserirCelula(stCelula* cel, void* conteudo){
     //insere no espaço vazio
     if (cel == NULL) {
