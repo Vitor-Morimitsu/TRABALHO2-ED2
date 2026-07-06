@@ -9,25 +9,50 @@
 #include <string.h>
 #include "quadra.h"
 
-//a rosa dos ventos é invertida, Sul está no norte,etc
+// a rosa dos ventos é invertida, Sul está no norte, etc
 
-/*
-    Função responsável por abrir o arquivo Svg passado como parâmetro aberto na main
-*/
+/// @brief Abre a tag raiz do SVG
 void abrirSvg(FILE* arqSvg);
 
-void desenharRetangulo(FILE* arqSvg, Quadra q);
+/// @brief Desenha o retângulo de uma quadra no SVG
+void desenharRetanguloSVG(FILE* arqSvg, Quadra q);
 
-void svgComandoO(FILE* svg);
+/// @brief Linha vertical pontilhada vermelha marcando o endereço do registrador
+/// e rótulo R<n> no topo da página
+void svgComandoO(FILE* svg, double x, double y, int numRegistrador);
 
+/// @brief Bounding box de uma aresta com velocidade insuficiente
+/// (retângulo azul semitransparente)
 void svgComandoRegs(FILE* svg, double x1, double y1, double x2, double y2);
 
-void svgComandoExp(FILE* svg);
+/// @brief Aresta selecionada pelo comando exp — linha vermelha grossa
+void svgComandoExp(FILE* svg, double x1, double y1, double x2, double y2);
 
+/// @brief Placeholder para animação do caminho mínimo (sem efeito)
 void svgComandoP(FILE* svg);
 
-/// @brief Realiza o comando de encerramento do arquivo svg
-/// @param arqSvg Arquivo
+/// @brief Segmento do caminho mínimo — linha colorida com extremidades arredondadas
+void svgDesenharSegmentoRua(FILE* svg, double x1, double y1, double x2, double y2, char* cor);
+
+/// @brief Marcador de início (I) ou fim (F) do caminho mínimo — círculo colorido com letra
+void svgDesenharMarcadorCaminho(FILE* svg, double x, double y, char letra, char* cor);
+
+/// @brief Marca com um X o local de uma quadra removida
+void comandoRqSvg(FILE* svg, float x, float y, float w, float h);
+
+/// @brief Marca com um quadradinho o endereço de uma mudança
+void comandoMudSvg(FILE* svg, float x, float y, float w, float h, char face, char* cpf);
+
+/// @brief Marca com uma cruz vermelha o local de um endereço
+void comandoRipSvg(FILE* svg, float x, float y);
+
+/// @brief Exibe contagem de moradores por face e total da quadra
+void comandoPqSvg(FILE* svg, Quadra q, int total, int n, int s, int l, int o);
+
+/// @brief Desenha um círculo preto no local de um despejo
+void comandoDspjSvg(FILE* svg, float x, float y);
+
+/// @brief Fecha a tag raiz do SVG
 void fecharSVG(FILE* arqSvg);
 
 #endif

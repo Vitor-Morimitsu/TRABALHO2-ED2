@@ -1,4 +1,5 @@
 #include "registrador.h"
+#include <string.h>
 
 typedef struct{
     char* cep;

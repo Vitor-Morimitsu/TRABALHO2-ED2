@@ -1,4 +1,5 @@
 #include "vertice.h"
+#include <string.h>
 
 typedef struct{
     char* id;

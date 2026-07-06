@@ -1,4 +1,5 @@
 #include "arvore.h"
+#include <string.h>
 
 typedef struct stcelula{
     void* conteudo;
@@ -13,7 +14,7 @@ typedef struct{
 Arvore criarArvore(){
     stArvore* novaArvore = calloc(1,sizeof(stArvore));
     if(novaArvore == NULL){
-        printf("Erro ao criarArvore/n");
+        printf("Erro ao criarArvore\n");
         return NULL;
     }
     return novaArvore;
@@ -42,7 +43,7 @@ void* buscarCelula(char* chave, CelulaArvore cel){
 
 void* buscarArvore(char* chave, Arvore a){
     if(a == NULL){
-        printf("Erro em buscarArvore/n");
+        printf("Erro em buscarArvore\n");
         return NULL;
     }
     stArvore* arv = (stArvore*)a;
@@ -85,7 +86,7 @@ stCelula* inserirCelula(stCelula* cel, void* conteudo){
 
 void inserirArvore(void* cont, Arvore a){
     if(cont == NULL||a == NULL){
-        printf("Erro em inserirArvore/n");
+        printf("Erro em inserirArvore\n");
         return;
     }
     stArvore* arv = (stArvore*)a;

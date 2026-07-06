@@ -1,4 +1,5 @@
 #include "aresta.h"
+#include <string.h>
 
 typedef struct{
     char* nome;

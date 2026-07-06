@@ -8,7 +8,7 @@ ALUNO = vitorms
 CC = gcc
 
 # Flags de compilacao
-CFLAGS = -std=c99 -fstack-protector-all -Wall -Wextra -O0 -g -ggdb
+CFLAGS = -std=c99 -fstack-protector-all -Wall -Wextra -O0 -g -ggdb -I../include
 
 # Diretorios
 SRC_DIR   = .
@@ -19,7 +19,7 @@ LIBS      = -lm
 UNITY_OBJ = $(UNITY_DIR)/unity.c
 
 # Fontes do executavel principal
-MAIN_SRCS = main.c geo.c via.c qry.c quadra.c svg.c arvore.c grafo.c vertice.c aresta.c filaPrioridades.c
+MAIN_SRCS = main.c geo.c via.c qry.c quadra.c svg.c arvore.c grafo.c vertice.c aresta.c filaPrioridades.c registrador.c
 MAIN_OBJS = $(MAIN_SRCS:.c=.o)
 
 all: $(TARGET)

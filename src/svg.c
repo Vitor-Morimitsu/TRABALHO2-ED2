@@ -108,6 +108,55 @@ void comandoDspjSvg(FILE* svg, float x, float y){
     fprintf(svg, "<circle cx=\"%f\" cy=\"%f\" r=\"15\" fill=\"black\" />\n", x, y);
 }
 
+void svgComandoP(FILE* arqSvg){
+    (void)arqSvg; /* o caminho é desenhado segmento a segmento via svgDesenharSegmentoRua */
+}
+
+/* Linha vertical pontilhada vermelha do endereço ao topo da página + rótulo do registrador */
+void svgComandoO(FILE* svg, double x, double y, int numRegistrador) {
+    if (!svg) return;
+    fprintf(svg, "<line x1=\"%f\" y1=\"0\" x2=\"%f\" y2=\"%f\" "
+            "stroke=\"red\" stroke-width=\"1\" stroke-dasharray=\"6,4\" />\n", x, x, y);
+    fprintf(svg, "<text x=\"%f\" y=\"14\" fill=\"red\" font-size=\"11\" "
+            "text-anchor=\"middle\">R%d</text>\n", x, numRegistrador);
+}
+
+/* Bounding box de aresta com velocidade insuficiente — retângulo azul semitransparente */
+void svgComandoRegs(FILE* svg, double x1, double y1, double x2, double y2) {
+    if (!svg) return;
+    double bx = (x1 < x2) ? x1 : x2;
+    double by = (y1 < y2) ? y1 : y2;
+    double bw = (x1 > x2) ? x1 - x2 : x2 - x1;
+    double bh = (y1 > y2) ? y1 - y2 : y2 - y1;
+    fprintf(svg, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" "
+            "fill=\"blue\" fill-opacity=\"0.2\" "
+            "stroke=\"blue\" stroke-width=\"1\" />\n", bx, by, bw, bh);
+}
+
+/* Aresta selecionada pelo comando exp — linha vermelha grossa */
+void svgComandoExp(FILE* svg, double x1, double y1, double x2, double y2) {
+    if (!svg) return;
+    fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" "
+            "stroke=\"red\" stroke-width=\"4\" />\n", x1, y1, x2, y2);
+}
+
+/* Segmento de rua do caminho mínimo — linha colorida e ligeiramente grossa */
+void svgDesenharSegmentoRua(FILE* svg, double x1, double y1, double x2, double y2, char* cor) {
+    if (!svg || !cor) return;
+    fprintf(svg, "<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" "
+            "stroke=\"%s\" stroke-width=\"3\" stroke-linecap=\"round\" />\n",
+            x1, y1, x2, y2, cor);
+}
+
+/* Marcador de início (I) ou fim (F) do caminho — círculo colorido com letra */
+void svgDesenharMarcadorCaminho(FILE* svg, double x, double y, char letra, char* cor) {
+    if (!svg || !cor) return;
+    fprintf(svg, "<circle cx=\"%f\" cy=\"%f\" r=\"10\" "
+            "fill=\"%s\" stroke=\"white\" stroke-width=\"1.5\" />\n", x, y, cor);
+    fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"white\" font-size=\"11\" font-weight=\"bold\" "
+            "text-anchor=\"middle\" dominant-baseline=\"middle\">%c</text>\n", x, y, letra);
+}
+
 void fecharSVG(FILE* arqSvg){
     if(!arqSvg){
         printf("Erro em fecharSvg\n");

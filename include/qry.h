@@ -15,37 +15,36 @@
 */
 
 /*
-    Armazena a posição geografica do endereço cep/face/num no registrador reg.
-    Svg: linha vertical pontilhada vermelha mostrando a posição do endereço e colocar o numero do registrados na outra extremidade da linha(topo da pagina)
-    Txt: reportar a coordenada relatica ao endereço
+    Armazena a posição geográfica do endereço cep/face/num no registrador reg.
+    Svg: linha vertical pontilhada vermelha mostrando a posição do endereço e colocar o numero do registrador na outra extremidade da linha (topo da página)
+    Txt: reportar a coordenada relativa ao endereço
 */
+void comandoO(FILE* svg, FILE* txt, int numRegistrador, char* cep, char face, int num, Arvore quadras, Registrador regs[]);
 
 /*
-    realiza o comando O? do arquivo qry.
+    Atualiza a velocidade média das arestas dentro da região (x,y,w,h) para velocidadeNova
 */
-void comandoO(FILE* svg, FILE* txt,int numRegistrador, char* cep, char face, int num,Quadra quadra,  Registrador regs[]){
+void comandoMvm(Grafo grafo, double velocidadeNova, double x, double y, double w, double h);
 
 /*
-    realiza o comando Mvm
-*/
-void comandoMvm(Arvore quadras,Grafo grafo,double velocidadeNova, double x, double y, double w, double h);
-
-/*
-    realiza o comando Regs
+    Reporta e desenha as arestas com velocidade abaixo de vInsuficiente
 */
 void comandoRegs(FILE* txt, FILE* svg, Arvore quadras, Grafo grafo, double vInsuficiente);
 
-void calcularBoundingBox(Aresta a);
+/*
+    Calcula e desenha a bounding box de uma aresta no SVG
+*/
+void calcularBoundingBox(FILE* svg, Aresta a);
 
 /*
-    Realiza o comando exp
+    Aumenta a velocidade em 50% das arestas com vm abaixo de velocidade
 */
-void comandoExp(Grafo grafo, double velocidadeInferior);
+void comandoExp(FILE* svg, Grafo grafo, Arvore quadras, double velocidade);
 
 /*
-    Realiza o comando P 
+    Realiza o comando P?: calcula o menor caminho entre dois registradores
 */
-void comandoP(FILE* svg, FILE* txt,Registrador reg1, Registrador reg2,char* cc, char* cr);
+void comandoP(FILE* svg, FILE* txt, Arvore quadras, Grafo grafo, Registrador reg1, Registrador reg2, char* cc, char* cr);
 
 /// @brief Função principal para ler o qry
 /// @param qry Arquivo qry
@@ -54,6 +53,6 @@ void comandoP(FILE* svg, FILE* txt,Registrador reg1, Registrador reg2,char* cc, 
 /// @param quadras Arvore que contenha as quadras
 /// @param grafo Grafo com os vertices
 /// @param regs array de registradores
-void lerQry(FILE* qry, FILE* svg, FILE* txt, Arvore quadras, Grafo grafo,Registrador regs[]);
+void lerQry(FILE* qry, FILE* svg, FILE* txt, Arvore quadras, Grafo grafo, Registrador regs[]);
 
 #endif

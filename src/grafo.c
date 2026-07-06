@@ -1,4 +1,5 @@
 #include "grafo.h"
+#include <string.h>
 
 typedef struct stCelulaAresta {
     int destino; //indice do vertice de destino   
@@ -127,7 +128,7 @@ void liberarGrafo(Grafo g){
             free(atual);         
             atual = prox;
         }
-        free(grafo->vertices[i].dados);
+        liberarVertice(grafo->vertices[i].dados);
     }
 
     free(grafo->vertices); 

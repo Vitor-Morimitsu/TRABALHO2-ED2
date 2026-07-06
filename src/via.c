@@ -1,4 +1,5 @@
 #include "via.h"
+#include <string.h>
 
 void lerVia(FILE* via,Arvore quadras,Grafo grafo){
     if(via == NULL || quadras == NULL){
@@ -16,12 +17,15 @@ void lerVia(FILE* via,Arvore quadras,Grafo grafo){
         if (lidos_cmd != 1) continue;
 
         if(strcmp(comando, "nv") == 0){
-            //define o numero de vertices do grafo
+            /* formato: nv <numero> */
             int lidos = sscanf(&linha[strlen(comando)], "%i", &numeroVertices);
             if(lidos != 1){
                 printf("Erro em lerVia no comando nv\n");
                 continue;
             }
+        }else if(comando[0] >= '0' && comando[0] <= '9'){
+            /* formato alternativo: apenas o número na primeira linha, sem prefixo nv */
+            sscanf(comando, "%i", &numeroVertices);
         }else if(strcmp(comando, "v") == 0){
             //cria o vertice id posicionado nas coordenadas [x,y]
             char idVertice[64];
@@ -56,11 +60,12 @@ void lerVia(FILE* via,Arvore quadras,Grafo grafo){
                 continue;
             }
             Aresta novaAresta = criarAresta(nome, cepDireita,cepEsquerda,cmp,vm); 
+            setVerticesAresta(novaAresta, getVerticeGrafo(grafo, idxInicio), getVerticeGrafo(grafo, idxFim));
             inserirArestaGrafo(grafo, idxInicio, idxFim, novaAresta);
             
         }else {
-            printf("Comando inválido em lerVia\n");
-            return;
+            /* linha desconhecida — ignora e continua */
+            continue;
         }
         
     }
