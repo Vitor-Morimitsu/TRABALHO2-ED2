@@ -51,6 +51,16 @@ void setVmAresta(Aresta a, double novaVm);
 /// @return Velocidade media
 double getVmAresta(Aresta a);
 
+/// @brief Retorna o primeiro vértice da aresta
+/// @param a Aresta
+/// @return Vertice
+Vertice getVerticeV1(Aresta a);
+
+/// @brief Retorna o segundo vértice da aresta
+/// @param a Aresta
+/// @return Vertice
+Vertice getVerticeV2(Aresta a);
+
 /// @brief Libera a memória alocada para uma aresta
 /// @param a Aresta
 void liberarAresta(Aresta a);

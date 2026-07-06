@@ -20,7 +20,7 @@ void desenharRetangulo(FILE* arqSvg, Quadra q);
 
 void svgComandoO(FILE* svg);
 
-void svgComandoRegs(FILE* svg);
+void svgComandoRegs(FILE* svg, double x1, double y1, double x2, double y2);
 
 void svgComandoExp(FILE* svg);
 

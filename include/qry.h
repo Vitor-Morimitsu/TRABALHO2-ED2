@@ -8,6 +8,7 @@
 #include "vertice.h"
 #include "via.h"
 #include "registrador.h"
+#include "svg.h"
 
 /*
     Arquivo responsável pelas operações .qry no segundo trabalho de estrutura de dados 2
@@ -22,17 +23,19 @@
 /*
     realiza o comando O? do arquivo qry.
 */
-void comandoO(FILE* svg, FILE* txt,int numRegistrador, char* cep, char face, int num,Arvore quadras,  Registrador regs[]);
+void comandoO(FILE* svg, FILE* txt,int numRegistrador, char* cep, char face, int num,Quadra quadra,  Registrador regs[]){
 
 /*
     realiza o comando Mvm
 */
-void comandoMvm(Grafo grafo,double velocidadeNova, double x, double y, double w, double h);
+void comandoMvm(Arvore quadras,Grafo grafo,double velocidadeNova, double x, double y, double w, double h);
 
 /*
     realiza o comando Regs
 */
-void comandoRegs(FILE* svg, FILE* txt,Grafo grafo, double velocidadeInsuficiente);
+void comandoRegs(FILE* txt, FILE* svg, Arvore quadras, Grafo grafo, double vInsuficiente);
+
+void calcularBoundingBox(Aresta a);
 
 /*
     Realiza o comando exp

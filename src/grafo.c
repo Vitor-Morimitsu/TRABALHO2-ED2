@@ -85,13 +85,34 @@ void inserirArestaGrafo(Grafo g, int origem, int destino, Aresta dados){
     grafo->vertices[origem].arestas = nova;
 }
 
-stVerticeGrafo* getVerticeGrafo(Grafo g){
-    if(g == NULL){
-        printf("Erro em getVerticeGrafo\n");
-        return NULL;
-    }
-    stGrafo* grafo = (stGrafo*)g;
-    return grafo->vertices; 
+// retorna o número de vértices do grafo
+int getNumVerticesGrafo(Grafo g){
+    return ((stGrafo*)g)->numVertices;
+}
+
+// retorna o vértice de um dado índice
+Vertice getVerticeGrafo(Grafo g, int idx){
+    return ((stGrafo*)g)->vertices[idx].dados;
+}
+
+// retorna a primeira célula de aresta de um vértice (cabeça da lista)
+void* getPrimeiraArestaGrafo(Grafo g, int idx){
+    return ((stGrafo*)g)->vertices[idx].arestas;
+}
+
+// retorna a próxima célula de aresta
+void* getProximaAresta(void* celulaAresta){
+    return ((stCelulaAresta*)celulaAresta)->prox;
+}
+
+// retorna os dados (Aresta) de uma célula
+Aresta getDadosAresta(void* celulaAresta){
+    return ((stCelulaAresta*)celulaAresta)->dados;
+}
+
+// retorna o índice do vértice de destino de uma célula
+int getDestinoAresta(void* celulaAresta){
+    return ((stCelulaAresta*)celulaAresta)->destino;
 }
 
 void liberarGrafo(Grafo g){

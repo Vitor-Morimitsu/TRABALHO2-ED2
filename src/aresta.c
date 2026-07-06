@@ -63,6 +63,14 @@ void setVmAresta(Aresta a, double novaVm){
     ((stAresta*)a)->vm = novaVm;
 }
 
+Vertice getVerticeV1(Aresta a){
+    return ((stAresta*)a)->v1;
+}
+
+Vertice getVerticeV2(Aresta a){
+    return ((stAresta*)a)->v2;
+}
+
 void liberarAresta(Aresta a){
     if(a == NULL){
         printf("Erro em liberarAresta\n");

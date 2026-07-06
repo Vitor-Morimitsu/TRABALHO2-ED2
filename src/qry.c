@@ -36,7 +36,7 @@ void comandoMvm(Arvore quadras,Grafo grafo,double velocidadeNova, double x, doub
             if(coordY >= y && coordY <= y + h){
                 //quadra está dentro da região
                 char* cep = getCEPQuadra(celArv);
-                Vertice v =  buscarVerticeIDGrafo(grafo, cep)
+                Vertice v =  buscarVerticeIDGrafo(grafo, cep);
             }else{
                 continue;
             }
@@ -44,11 +44,60 @@ void comandoMvm(Arvore quadras,Grafo grafo,double velocidadeNova, double x, doub
             continue;
         }
 
-        //vertices e arestas estão armazenados no grafo. Quadras estão armazenadas na arvore
-        Vertice v = 
+        int n = getNumVerticesGrafo(grafo);
+        for(int i = 0; i < n; i++){
+            void* cel = getPrimeiraArestaGrafo(grafo, i);
+            while(cel != NULL){
+                Aresta a = getDadosAresta(cel);
+                int destino = getDestinoAresta(cel);
+                // usa a aresta aqui
+                setVmAresta(a, velocidadeNova);
+
+                cel = getProximaAresta(cel);
+            }
+        }
 
     }
     
+}
+
+void comandoRegs(FILE* txt, FILE* svg, Arvore quadras, Grafo grafo, double vInsuficiente){
+    //considera insuficiente os trechos com velocidade vInsuficiente
+    bool loop = true;
+    int contador = 0;
+    int n = getNumVerticesGrafo(grafo);
+    for(int i = 0; i < n; i++){
+        void* cel = getPrimeiraArestaGrafo(grafo, i);
+        while(cel != NULL){
+            Aresta a   = getDadosAresta(cel);
+            int destino = getDestinoAresta(cel);
+            // usa a aresta aqui
+            double vAntiga = getVmAresta(a);
+            if(vAntiga < vInsuficiente){
+                contador++;
+                calcularBoundingBox(svg, a);
+            }
+            cel = getProximaAresta(cel);
+        }
+    }
+    fprintf(txt,"Quantidade de ruas com velocidade insuficiente : %d\n", contador);
+
+}
+
+void calcularBoundingBox(FILE* svg,Aresta a){
+    if(a == NULL){
+        printf("Erro em calcularBoundingBox\n");
+        return;
+    }
+    Vertice v1 = getVerticeV1(a);
+    double x1 = getXVertice(v1);
+    double y1 = getYVertice(v1);
+
+    Vertice v2 = getVerticeV2(a);
+    double x2 = getXVertice(v2);
+    double y2 = getYVertice(v2);
+
+    svgComandoRegs(svg,x1,y1, x2,y2);
 }
 
 void lerQry(FILE* qry, FILE* svg, FILE* txt, Arvore quadras, Grafo grafo, Registrador regs[]){
