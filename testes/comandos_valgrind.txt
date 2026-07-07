@@ -1,0 +1,90 @@
+# Comandos Valgrind — Projeto 2 ED2
+# Execute todos a partir da pasta src/ no WSL:
+#   cd "/mnt/c/Users/morim/OneDrive/Desktop/projeto 2 ED2/src"
+#
+# Antes de rodar pela primeira vez (ou ao alternar Windows/WSL):
+#   make clean && make ted && mkdir -p ../testes/output
+
+# ===========================================================================
+# CASO c1
+# ===========================================================================
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c1.geo -v ../testes/t2/c1-v.via -q ../testes/t2/c1/00-perc-smpl.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c1.geo -v ../testes/t2/c1-v.via -q ../testes/t2/c1/01-perc-smpl-volta.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c1.geo -v ../testes/t2/c1-v.via -q ../testes/t2/c1/01-regs-quadr.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c1.geo -v ../testes/t2/c1-v.via -q ../testes/t2/c1/02-exp-apos-reg.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c1.geo -v ../testes/t2/c1-v.via -q ../testes/t2/c1/02-perc-estr3.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c1.geo -v ../testes/t2/c1-v.via -q ../testes/t2/c1/03-perc-apos-reg.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c1.geo -v ../testes/t2/c1-v.via -q ../testes/t2/c1/03-perc-smpl-intercalado.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c1.geo -v ../testes/t2/c1-v.via -q ../testes/t2/c1/04-perc-apos-exp.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c1.geo -v ../testes/t2/c1-v.via -q ../testes/t2/c1/05-perc-apos-reg-exp.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c1.geo -v ../testes/t2/c1-v.via -q ../testes/t2/c1/06-perc-zigzag.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c1.geo -v ../testes/t2/c1-v.via -q ../testes/t2/c1/07-perc-apos-exp.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c1.geo -v ../testes/t2/c1-v.via -q ../testes/t2/c1/08-perc-apos-reg-exp.qry -o ../testes/output
+
+# ===========================================================================
+# CASO c2
+# ===========================================================================
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c2.geo -v ../testes/t2/c2-v.via -q ../testes/t2/c2/00-perc-smpl.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c2.geo -v ../testes/t2/c2-v.via -q ../testes/t2/c2/01-perc-smpl-volta.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c2.geo -v ../testes/t2/c2-v.via -q ../testes/t2/c2/01-regs-quadr.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c2.geo -v ../testes/t2/c2-v.via -q ../testes/t2/c2/02-exp-apos-reg.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c2.geo -v ../testes/t2/c2-v.via -q ../testes/t2/c2/02-perc-estr3.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c2.geo -v ../testes/t2/c2-v.via -q ../testes/t2/c2/03-perc-apos-reg.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c2.geo -v ../testes/t2/c2-v.via -q ../testes/t2/c2/03-perc-smpl-intercalado.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c2.geo -v ../testes/t2/c2-v.via -q ../testes/t2/c2/04-perc-apos-exp.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c2.geo -v ../testes/t2/c2-v.via -q ../testes/t2/c2/05-perc-apos-reg-exp.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c2.geo -v ../testes/t2/c2-v.via -q ../testes/t2/c2/06-perc-zigzag.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c2.geo -v ../testes/t2/c2-v.via -q ../testes/t2/c2/07-perc-apos-exp.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c2.geo -v ../testes/t2/c2-v.via -q ../testes/t2/c2/08-perc-apos-reg-exp.qry -o ../testes/output
+
+# ===========================================================================
+# CASO c3
+# ===========================================================================
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c3.geo -v ../testes/t2/c3-v.via -q ../testes/t2/c3/00-perc-smpl.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c3.geo -v ../testes/t2/c3-v.via -q ../testes/t2/c3/01-perc-smpl-volta.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c3.geo -v ../testes/t2/c3-v.via -q ../testes/t2/c3/01-regs-quadr.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c3.geo -v ../testes/t2/c3-v.via -q ../testes/t2/c3/02-exp-apos-reg.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c3.geo -v ../testes/t2/c3-v.via -q ../testes/t2/c3/02-perc-estr3.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c3.geo -v ../testes/t2/c3-v.via -q ../testes/t2/c3/03-perc-apos-reg.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c3.geo -v ../testes/t2/c3-v.via -q ../testes/t2/c3/03-perc-smpl-intercalado.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c3.geo -v ../testes/t2/c3-v.via -q ../testes/t2/c3/04-perc-apos-exp.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c3.geo -v ../testes/t2/c3-v.via -q ../testes/t2/c3/05-perc-apos-reg-exp.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c3.geo -v ../testes/t2/c3-v.via -q ../testes/t2/c3/06-perc-zigzag.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c3.geo -v ../testes/t2/c3-v.via -q ../testes/t2/c3/07-perc-apos-exp.qry -o ../testes/output
+
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./ted -f ../testes/t2/c3.geo -v ../testes/t2/c3-v.via -q ../testes/t2/c3/08-perc-apos-reg-exp.qry -o ../testes/output
