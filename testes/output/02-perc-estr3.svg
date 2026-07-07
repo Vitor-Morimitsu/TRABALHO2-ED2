@@ -99,4 +99,60 @@
 <rect x="1040.000000" y="950.000000" width="120.000000" height="80.000000" fill="Moccasin" stroke="dodgerblue" stroke-width="1" />
 <rect x="1175.000000" y="950.000000" width="120.000000" height="80.000000" fill="Moccasin" stroke="dodgerblue" stroke-width="1" />
 <rect x="1310.000000" y="950.000000" width="120.000000" height="80.000000" fill="Moccasin" stroke="dodgerblue" stroke-width="1" />
+<line x1="230.000000" y1="0" x2="230.000000" y2="352.000000" stroke="red" stroke-width="1" stroke-dasharray="6,4" />
+<text x="230.000000" y="14" fill="red" font-size="11" text-anchor="middle">R1</text>
+<line x1="484.000000" y1="0" x2="484.000000" y2="650.000000" stroke="red" stroke-width="1" stroke-dasharray="6,4" />
+<text x="484.000000" y="14" fill="red" font-size="11" text-anchor="middle">R2</text>
+<path id="routeDistancia" d="M 226.25,328.75 L 226.25,281.25 L 293.75,281.25 L 361.25,281.25 L 361.25,328.75 L 361.25,376.25 L 361.25,423.75 L 361.25,471.25 L 361.25,518.75 L 361.25,566.25 L 361.25,613.75 L 361.25,661.25 L 428.75,661.25 L 496.25,661.25" fill="none" stroke="#008000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle r="8" fill="yellow" stroke="white" stroke-width="2">
+  <animateMotion dur="10.0s" repeatCount="indefinite" calcMode="linear" rotate="auto">
+    <mpath xlink:href="#routeDistancia"/>
+  </animateMotion>
+</circle>
+<path id="routeTempo" d="M 226.25,328.75 L 226.25,281.25 L 293.75,281.25 L 361.25,281.25 L 361.25,328.75 L 361.25,376.25 L 361.25,423.75 L 361.25,471.25 L 361.25,518.75 L 361.25,566.25 L 361.25,613.75 L 361.25,661.25 L 428.75,661.25 L 496.25,661.25" fill="none" stroke="blue" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle r="8" fill="cyan" stroke="white" stroke-width="2">
+  <animateMotion dur="10.0s" repeatCount="indefinite" calcMode="linear" rotate="auto">
+    <mpath xlink:href="#routeTempo"/>
+  </animateMotion>
+</circle>
+<circle cx="226.250000" cy="328.750000" r="10" fill="#FFFF00" stroke="white" stroke-width="1.5" />
+<text x="226.250000" y="328.750000" fill="white" font-size="11" font-weight="bold" text-anchor="middle" dominant-baseline="middle">I</text>
+<circle cx="496.250000" cy="661.250000" r="10" fill="#FFFF00" stroke="white" stroke-width="1.5" />
+<text x="496.250000" y="661.250000" fill="white" font-size="11" font-weight="bold" text-anchor="middle" dominant-baseline="middle">F</text>
+<line x1="1421.000000" y1="0" x2="1421.000000" y2="285.000000" stroke="red" stroke-width="1" stroke-dasharray="6,4" />
+<text x="1421.000000" y="14" fill="red" font-size="11" text-anchor="middle">R2</text>
+<path id="routeDistancia" d="M 1441.25,281.25 L 1441.25,328.75 L 1441.25,376.25 L 1373.75,376.25 L 1306.25,376.25 L 1238.75,376.25 L 1171.25,376.25 L 1103.75,376.25 L 1036.25,376.25 L 968.75,376.25 L 901.25,376.25 L 833.75,376.25 L 766.25,376.25 L 698.75,376.25 L 631.25,376.25 L 563.75,376.25 L 496.25,376.25 L 428.75,376.25 L 361.25,376.25 L 293.75,376.25 L 226.25,376.25 L 226.25,328.75" fill="none" stroke="#008000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle r="8" fill="yellow" stroke="white" stroke-width="2">
+  <animateMotion dur="10.0s" repeatCount="indefinite" calcMode="linear" rotate="auto">
+    <mpath xlink:href="#routeDistancia"/>
+  </animateMotion>
+</circle>
+<path id="routeTempo" d="M 1441.25,281.25 L 1441.25,328.75 L 1441.25,376.25 L 1441.25,423.75 L 1441.25,471.25 L 1441.25,518.75 L 1441.25,566.25 L 1441.25,613.75 L 1441.25,661.25 L 1441.25,708.75 L 1441.25,756.25 L 1441.25,803.75 L 1441.25,851.25 L 1441.25,898.75 L 1441.25,946.25 L 1441.25,990.00 L 1441.25,1033.75 L 1441.25,1061.00 L 1373.75,1061.00 L 1306.25,1061.00 L 1238.75,1061.00 L 1171.25,1061.00 L 1103.75,1061.00 L 1036.25,1061.00 L 968.75,1061.00 L 901.25,1061.00 L 833.75,1061.00 L 766.25,1061.00 L 698.75,1061.00 L 631.25,1061.00 L 563.75,1061.00 L 496.25,1061.00 L 428.75,1061.00 L 361.25,1061.00 L 293.75,1061.00 L 226.25,1061.00 L 226.25,1033.75 L 226.25,990.00 L 226.25,946.25 L 226.25,898.75 L 226.25,851.25 L 226.25,803.75 L 226.25,756.25 L 226.25,708.75 L 226.25,661.25 L 226.25,613.75 L 226.25,566.25 L 226.25,518.75 L 226.25,471.25 L 226.25,423.75 L 226.25,376.25 L 226.25,328.75" fill="none" stroke="blue" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle r="8" fill="cyan" stroke="white" stroke-width="2">
+  <animateMotion dur="10.0s" repeatCount="indefinite" calcMode="linear" rotate="auto">
+    <mpath xlink:href="#routeTempo"/>
+  </animateMotion>
+</circle>
+<circle cx="1441.250000" cy="281.250000" r="10" fill="#FFFF00" stroke="white" stroke-width="1.5" />
+<text x="1441.250000" y="281.250000" fill="white" font-size="11" font-weight="bold" text-anchor="middle" dominant-baseline="middle">I</text>
+<circle cx="226.250000" cy="328.750000" r="10" fill="#FFFF00" stroke="white" stroke-width="1.5" />
+<text x="226.250000" y="328.750000" fill="white" font-size="11" font-weight="bold" text-anchor="middle" dominant-baseline="middle">F</text>
+<line x1="1129.000000" y1="0" x2="1129.000000" y2="840.000000" stroke="red" stroke-width="1" stroke-dasharray="6,4" />
+<text x="1129.000000" y="14" fill="red" font-size="11" text-anchor="middle">R2</text>
+<path id="routeDistancia" d="M 226.25,328.75 L 226.25,281.25 L 293.75,281.25 L 361.25,281.25 L 361.25,328.75 L 361.25,376.25 L 361.25,423.75 L 361.25,471.25 L 361.25,518.75 L 361.25,566.25 L 361.25,613.75 L 361.25,661.25 L 361.25,708.75 L 361.25,756.25 L 361.25,803.75 L 361.25,851.25 L 428.75,851.25 L 496.25,851.25 L 563.75,851.25 L 631.25,851.25 L 698.75,851.25 L 766.25,851.25 L 833.75,851.25 L 901.25,851.25 L 968.75,851.25 L 1036.25,851.25 L 1103.75,851.25" fill="none" stroke="#008000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle r="8" fill="yellow" stroke="white" stroke-width="2">
+  <animateMotion dur="10.0s" repeatCount="indefinite" calcMode="linear" rotate="auto">
+    <mpath xlink:href="#routeDistancia"/>
+  </animateMotion>
+</circle>
+<path id="routeTempo" d="M 226.25,328.75 L 226.25,281.25 L 226.25,233.75 L 226.25,186.25 L 226.25,138.75 L 226.25,91.25 L 226.25,59.00 L 293.75,59.00 L 361.25,59.00 L 428.75,59.00 L 496.25,59.00 L 563.75,59.00 L 631.25,59.00 L 698.75,59.00 L 766.25,59.00 L 833.75,59.00 L 901.25,59.00 L 901.25,91.25 L 901.25,138.75 L 901.25,186.25 L 901.25,233.75 L 901.25,281.25 L 901.25,328.75 L 901.25,376.25 L 901.25,423.75 L 901.25,471.25 L 901.25,518.75 L 901.25,566.25 L 901.25,613.75 L 901.25,661.25 L 901.25,708.75 L 901.25,756.25 L 901.25,803.75 L 901.25,851.25 L 968.75,851.25 L 1036.25,851.25 L 1103.75,851.25" fill="none" stroke="blue" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle r="8" fill="cyan" stroke="white" stroke-width="2">
+  <animateMotion dur="10.0s" repeatCount="indefinite" calcMode="linear" rotate="auto">
+    <mpath xlink:href="#routeTempo"/>
+  </animateMotion>
+</circle>
+<circle cx="226.250000" cy="328.750000" r="10" fill="#FFFF00" stroke="white" stroke-width="1.5" />
+<text x="226.250000" y="328.750000" fill="white" font-size="11" font-weight="bold" text-anchor="middle" dominant-baseline="middle">I</text>
+<circle cx="1103.750000" cy="851.250000" r="10" fill="#FFFF00" stroke="white" stroke-width="1.5" />
+<text x="1103.750000" y="851.250000" fill="white" font-size="11" font-weight="bold" text-anchor="middle" dominant-baseline="middle">F</text>
 </svg>

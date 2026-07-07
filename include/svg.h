@@ -37,6 +37,19 @@ void svgDesenharSegmentoRua(FILE* svg, double x1, double y1, double x2, double y
 /// @brief Marcador de início (I) ou fim (F) do caminho mínimo — círculo colorido com letra
 void svgDesenharMarcadorCaminho(FILE* svg, double x, double y, char letra, char* cor);
 
+/// @brief Desenha o caminho como <path> com id e adiciona um <circle> animado
+/// que percorre o trajeto em loop por 'durSegundos' segundos.
+/// @param xs        Array de coordenadas X dos vértices
+/// @param ys        Array de coordenadas Y dos vértices
+/// @param n         Número de vértices
+/// @param corLinha  Cor da linha do caminho
+/// @param corPonto  Cor do ponto animado
+/// @param durSegundos Duração de um ciclo completo da animação em segundos
+/// @param animId    ID único para o elemento <path> (evitar colisões entre as duas rotas)
+void svgAnimarCaminho(FILE* svg, double* xs, double* ys, int n,
+                      char* corLinha, char* corPonto,
+                      double durSegundos, char* animId);
+
 /// @brief Marca com um X o local de uma quadra removida
 void comandoRqSvg(FILE* svg, float x, float y, float w, float h);
 

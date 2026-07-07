@@ -4,7 +4,10 @@ void abrirSvg(FILE* arqSvg){
     if(arqSvg == NULL){
         printf("Erro em abrirSvg\n");
     }
-    fprintf(arqSvg, "<svg xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"1500\" height=\"1500\">\n");
+    fprintf(arqSvg, "<svg xmlns:svg=\"http://www.w3.org/2000/svg\" "
+            "xmlns=\"http://www.w3.org/2000/svg\" "
+            "xmlns:xlink=\"http://www.w3.org/1999/xlink\" "
+            "version=\"1.1\" width=\"1500\" height=\"1500\">\n");
 }
 
 void desenharRetanguloSVG(FILE* arqSvg, Quadra q){
@@ -155,6 +158,31 @@ void svgDesenharMarcadorCaminho(FILE* svg, double x, double y, char letra, char*
             "fill=\"%s\" stroke=\"white\" stroke-width=\"1.5\" />\n", x, y, cor);
     fprintf(svg, "<text x=\"%f\" y=\"%f\" fill=\"white\" font-size=\"11\" font-weight=\"bold\" "
             "text-anchor=\"middle\" dominant-baseline=\"middle\">%c</text>\n", x, y, letra);
+}
+
+/* Desenha o caminho como <path> animado:
+ * — linha colorida com id 'animId'
+ * — ponto (circulo) percorrendo o trajeto em loop por 'durSegundos' segundos */
+void svgAnimarCaminho(FILE* svg, double* xs, double* ys, int n,
+                      char* corLinha, char* corPonto,
+                      double durSegundos, char* animId) {
+    if (!svg || !xs || !ys || n < 2 || !animId) return;
+
+    /* Linha do caminho (path com id para servir de trilho da animacao) */
+    fprintf(svg, "<path id=\"%s\" d=\"M %.2f,%.2f", animId, xs[0], ys[0]);
+    for (int i = 1; i < n; i++)
+        fprintf(svg, " L %.2f,%.2f", xs[i], ys[i]);
+    fprintf(svg, "\" fill=\"none\" stroke=\"%s\" stroke-width=\"3\" "
+            "stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n", corLinha);
+
+    /* Ponto animado percorrendo o path */
+    fprintf(svg, "<circle r=\"8\" fill=\"%s\" stroke=\"white\" stroke-width=\"2\">\n",
+            corPonto);
+    fprintf(svg, "  <animateMotion dur=\"%.1fs\" repeatCount=\"indefinite\" "
+            "calcMode=\"linear\" rotate=\"auto\">\n", durSegundos);
+    fprintf(svg, "    <mpath xlink:href=\"#%s\"/>\n", animId);
+    fprintf(svg, "  </animateMotion>\n");
+    fprintf(svg, "</circle>\n");
 }
 
 void fecharSVG(FILE* arqSvg){

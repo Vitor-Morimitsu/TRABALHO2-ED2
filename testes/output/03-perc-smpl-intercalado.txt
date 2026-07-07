@@ -1,0 +1,63 @@
+R1: cep=b05.9 face=S num=76 coord=(1219.00, 475.00)
+R2: cep=b05.2 face=S num=28 coord=(322.00, 475.00)
+Rota de menor distancia encontrada! Instrucoes:
+Siga pela rua Yerba_Buena_Ave
+Vire a esquerda na rua Young_Ct
+Siga em frente na rua Young_Ct
+Vire a esquerda na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Vire a esquerda na rua Young_St
+Siga em frente na rua Young_St
+Siga em frente na rua Young_St
+Siga em frente na rua Young_St
+Vire a direita na rua Yacht_Rd
+Siga em frente na rua Yacht_Rd
+Siga em frente na rua Yacht_Rd
+Siga em frente na rua Yacht_Rd
+Siga em frente na rua Yacht_Rd
+Siga em frente na rua Yacht_Rd
+Siga em frente na rua Yacht_Rd
+Siga em frente na rua Yacht_Rd
+Siga em frente na rua Yacht_Rd
+Siga em frente na rua Yacht_Rd
+Siga em frente na rua Yacht_Rd
+Siga em frente na rua Yacht_Rd
+Siga em frente na rua Yacht_Rd
+Siga em frente na rua Yacht_Rd
+Vire a direita na rua Zoe_St
+Siga em frente na rua Zoe_St
+Vire a direita na rua Yerba_Buena_Ave
+Voce chegou ao seu destino!	Distancia total:1595.00 metros
+
+Rota de menor tempo encontrada! Instrucoes:
+Siga pela rua Yerba_Buena_Ave
+Vire a esquerda na rua Young_Ct
+Siga em frente na rua Young_Ct
+Siga em frente na rua Young_Ct
+Siga em frente na rua Young_Ct
+Siga em frente na rua Young_Ct
+Siga em frente na rua Young_Ct
+Siga em frente na rua Young_Ct
+Siga em frente na rua Young_Ct
+Siga em frente na rua .
+Vire a direita na rua Perimetral_Sul
+Siga em frente na rua Perimetral_Sul
+Vire a esquerda na rua Perimetral_Sul
+Vire a esquerda na rua Perimetral_Sul
+Vire a esquerda na rua Perimetral_Sul
+Vire a esquerda na rua Perimetral_Sul
+Vire a direita na rua Perimetral_Sul
+Vire a esquerda na rua .
+Siga em frente na rua Zoo_Rd
+Siga em frente na rua Zoo_Rd
+Siga em frente na rua Zoo_Rd
+Siga em frente na rua Zoo_Rd
+Siga em frente na rua Zoo_Rd
+Siga em frente na rua Zoo_Rd
+Siga em frente na rua Zoo_Rd
+Siga em frente na rua Zoo_Rd
+Vire a esquerda na rua Yerba_Buena_Ave
+Siga em frente na rua Yerba_Buena_Ave
+Siga em frente na rua Yerba_Buena_Ave
+Voce chegou ao seu destino!	Tempo total:7.3 minutos
+

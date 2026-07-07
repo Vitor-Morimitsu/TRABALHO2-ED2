@@ -1,0 +1,182 @@
+R1: cep=b03.2 face=L num=13 coord=(230.00, 352.00)
+R2: cep=b06.3 face=N num=1 coord=(484.00, 650.00)
+Rota de menor distancia encontrada! Instrucoes:
+Siga pela rua Zoe_St
+Vire a direita na rua Yorba_St
+Siga em frente na rua Yorba_St
+Vire a direita na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Vire a esquerda na rua Wyman_Ave
+Siga em frente na rua Wyman_Ave
+Voce chegou ao seu destino!	Distancia total:697.50 metros
+
+Rota de menor tempo encontrada! Instrucoes:
+Siga pela rua Zoe_St
+Vire a direita na rua Yorba_St
+Siga em frente na rua Yorba_St
+Vire a direita na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Vire a esquerda na rua Wyman_Ave
+Siga em frente na rua Wyman_Ave
+Voce chegou ao seu destino!	Tempo total:1.3 minutos
+
+R2: cep=b03.10 face=S num=9 coord=(1421.00, 285.00)
+Rota de menor distancia encontrada! Instrucoes:
+Siga pela rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Vire a direita na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Vire a direita na rua Zoe_St
+Voce chegou ao seu destino!	Distancia total:1357.50 metros
+
+Rota de menor tempo encontrada! Instrucoes:
+Siga pela rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua Dr_Tom_Waddell_Pl
+Siga em frente na rua .
+Vire a direita na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Vire a direita na rua .
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Voce chegou ao seu destino!	Tempo total:2.6 minutos
+
+R2: cep=b08.8 face=N num=31 coord=(1129.00, 840.00)
+Rota de menor distancia encontrada! Instrucoes:
+Siga pela rua Zoe_St
+Vire a direita na rua Yorba_St
+Siga em frente na rua Yorba_St
+Vire a direita na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Siga em frente na rua Zircon_Pl
+Vire a esquerda na rua Worth_St
+Siga em frente na rua Worth_St
+Siga em frente na rua Worth_St
+Siga em frente na rua Worth_St
+Siga em frente na rua Worth_St
+Siga em frente na rua Worth_St
+Siga em frente na rua Worth_St
+Siga em frente na rua Worth_St
+Siga em frente na rua Worth_St
+Siga em frente na rua Worth_St
+Siga em frente na rua Worth_St
+Voce chegou ao seu destino!	Distancia total:1495.00 metros
+
+Rota de menor tempo encontrada! Instrucoes:
+Siga pela rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua .
+Vire a direita na rua Perimetral_Sul
+Siga em frente na rua Perimetral_Sul
+Siga em frente na rua Perimetral_Sul
+Siga em frente na rua Perimetral_Sul
+Siga em frente na rua Perimetral_Sul
+Siga em frente na rua Perimetral_Sul
+Siga em frente na rua Perimetral_Sul
+Siga em frente na rua Perimetral_Sul
+Siga em frente na rua Perimetral_Sul
+Siga em frente na rua Perimetral_Sul
+Vire a direita na rua .
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Siga em frente na rua Zampa_Ln
+Vire a esquerda na rua Worth_St
+Siga em frente na rua Worth_St
+Siga em frente na rua Worth_St
+Voce chegou ao seu destino!	Tempo total:3.0 minutos
+
