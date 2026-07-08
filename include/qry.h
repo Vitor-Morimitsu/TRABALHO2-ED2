@@ -32,11 +32,6 @@ void comandoMvm(Grafo grafo, double velocidadeNova, double x, double y, double w
 void comandoRegs(FILE* txt, FILE* svg, Arvore quadras, Grafo grafo, double vInsuficiente);
 
 /*
-    Calcula e desenha a bounding box de uma aresta no SVG
-*/
-void calcularBoundingBox(FILE* svg, Aresta a);
-
-/*
     Aumenta a velocidade em 50% das arestas com vm abaixo de velocidade
 */
 void comandoExp(FILE* svg, Grafo grafo, Arvore quadras, double velocidade);

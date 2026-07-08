@@ -124,16 +124,14 @@ void svgComandoO(FILE* svg, double x, double y, int numRegistrador) {
             "text-anchor=\"middle\">R%d</text>\n", x, numRegistrador);
 }
 
-/* Bounding box de aresta com velocidade insuficiente — retângulo azul semitransparente */
-void svgComandoRegs(FILE* svg, double x1, double y1, double x2, double y2) {
+/* Bounding box de componente conexo — retângulo colorido com 50% de transparência */
+void svgComandoRegs(FILE* svg, double minX, double minY, double maxX, double maxY, const char* cor) {
     if (!svg) return;
-    double bx = (x1 < x2) ? x1 : x2;
-    double by = (y1 < y2) ? y1 : y2;
-    double bw = (x1 > x2) ? x1 - x2 : x2 - x1;
-    double bh = (y1 > y2) ? y1 - y2 : y2 - y1;
+    double bw = maxX - minX;
+    double bh = maxY - minY;
     fprintf(svg, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" "
-            "fill=\"blue\" fill-opacity=\"0.2\" "
-            "stroke=\"blue\" stroke-width=\"1\" />\n", bx, by, bw, bh);
+            "fill=\"%s\" fill-opacity=\"0.5\" "
+            "stroke=\"%s\" stroke-width=\"1\" />\n", minX, minY, bw, bh, cor, cor);
 }
 
 /* Aresta selecionada pelo comando exp — linha vermelha grossa */

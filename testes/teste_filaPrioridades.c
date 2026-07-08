@@ -34,7 +34,7 @@ void teste_ordemPrioridade(){
 
     // o topo deve ser sempre o menor parâmetro
     TEST_ASSERT_EQUAL_INT(0, getIdVerticeTopo(fila));
-    TEST_ASSERT_EQUAL_DOUBLE(1.0, getParametroTopo(fila));
+    TEST_ASSERT_EQUAL_FLOAT(1.0, getParametroTopo(fila));
 }
 
 void teste_removerElemento(){
@@ -46,7 +46,7 @@ void teste_removerElemento(){
 
     // agora o topo deve ser (1, 5.0)
     TEST_ASSERT_EQUAL_INT(1, getIdVerticeTopo(fila));
-    TEST_ASSERT_EQUAL_DOUBLE(5.0, getParametroTopo(fila));
+    TEST_ASSERT_EQUAL_FLOAT(5.0, getParametroTopo(fila));
 }
 
 void teste_filaVaziaAposRemoverTudo(){
@@ -79,7 +79,7 @@ void teste_inserirMuitosElementos(){
 
     for(int i = 0; i < 5; i++){
         TEST_ASSERT_EQUAL_INT(ids[i], getIdVerticeTopo(fila));
-        TEST_ASSERT_EQUAL_DOUBLE(esperado[i], getParametroTopo(fila));
+        TEST_ASSERT_EQUAL_FLOAT(esperado[i], getParametroTopo(fila));
         removerFilaPrioridades(fila);
     }
 }

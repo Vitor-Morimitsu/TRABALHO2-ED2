@@ -16,8 +16,8 @@ void teste_criarAresta(){
     TEST_ASSERT_EQUAL_STRING("a1", getNomeAresta(a));
     TEST_ASSERT_EQUAL_STRING("direita", getCEP_ladoDireitoAresta(a));
     TEST_ASSERT_EQUAL_STRING("esquerda", getCEP_ladoEsquerdoAresta(a));
-    TEST_ASSERT_EQUAL_DOUBLE(10.0, getCmpAresta(a));
-    TEST_ASSERT_EQUAL_DOUBLE(50.0, getVmAresta(a));
+    TEST_ASSERT_EQUAL_FLOAT(10.0, getCmpAresta(a));
+    TEST_ASSERT_EQUAL_FLOAT(50.0, getVmAresta(a));
 }
 
 void teste_criarArestaComHifen(){
@@ -33,16 +33,16 @@ void teste_getNomeAresta(){
 }
 
 void teste_getCmpAresta(){
-    TEST_ASSERT_EQUAL_DOUBLE(10.0, getCmpAresta(a));
+    TEST_ASSERT_EQUAL_FLOAT(10.0, getCmpAresta(a));
 }
 
 void teste_getVmAresta(){
-    TEST_ASSERT_EQUAL_DOUBLE(50.0, getVmAresta(a));
+    TEST_ASSERT_EQUAL_FLOAT(50.0, getVmAresta(a));
 }
 
 void teste_setVmAresta(){
     setVmAresta(a, 75.0);
-    TEST_ASSERT_EQUAL_DOUBLE(75.0, getVmAresta(a));
+    TEST_ASSERT_EQUAL_FLOAT(75.0, getVmAresta(a));
 }
 
 int main(){

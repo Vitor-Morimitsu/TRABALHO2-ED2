@@ -31,13 +31,13 @@ void teste_inserirEBuscarVertice(){
     TEST_ASSERT_EQUAL_INT(1, idx2);
 
     // busca por ID deve retornar o índice correto
-    TEST_ASSERT_EQUAL_INT(0, buscarVerticePorID(g, "v1"));
-    TEST_ASSERT_EQUAL_INT(1, buscarVerticePorID(g, "v2"));
+    TEST_ASSERT_EQUAL_INT(0, buscarVerticeIDGrafo(g, "v1"));
+    TEST_ASSERT_EQUAL_INT(1, buscarVerticeIDGrafo(g, "v2"));
 }
 
 // testa busca de vértice inexistente
 void teste_buscarVerticeInexistente(){
-    TEST_ASSERT_EQUAL_INT(-1, buscarVerticePorID(g, "v99"));
+    TEST_ASSERT_EQUAL_INT(-1, buscarVerticeIDGrafo(g, "v99"));
 }
 
 // testa inserção de aresta
@@ -77,7 +77,7 @@ void teste_expansaoGrafo(){
     for(int i = 0; i < 15; i++){
         char id[16];
         sprintf(id, "v%d", i);
-        TEST_ASSERT_EQUAL_INT(i, buscarVerticePorID(g, id));
+        TEST_ASSERT_EQUAL_INT(i, buscarVerticeIDGrafo(g, id));
     }
 }
 

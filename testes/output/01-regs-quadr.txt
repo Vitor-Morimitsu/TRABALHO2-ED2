@@ -1,1 +1,1 @@
-Quantidade de ruas com velocidade insuficiente : 329
+Quantidade de componentes conexos : 1

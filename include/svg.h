@@ -21,9 +21,8 @@ void desenharRetanguloSVG(FILE* arqSvg, Quadra q);
 /// e rótulo R<n> no topo da página
 void svgComandoO(FILE* svg, double x, double y, int numRegistrador);
 
-/// @brief Bounding box de uma aresta com velocidade insuficiente
-/// (retângulo azul semitransparente)
-void svgComandoRegs(FILE* svg, double x1, double y1, double x2, double y2);
+/// @brief Marca com um retângulo 50% transparente o bounding box de um componente conexo (regs)
+void svgComandoRegs(FILE* svg, double minX, double minY, double maxX, double maxY, const char* cor);
 
 /// @brief Aresta selecionada pelo comando exp — linha vermelha grossa
 void svgComandoExp(FILE* svg, double x1, double y1, double x2, double y2);

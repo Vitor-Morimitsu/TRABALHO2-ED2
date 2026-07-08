@@ -14,8 +14,8 @@ void tearDown(){
 void teste_criarVertice(){
     TEST_ASSERT_NOT_NULL(v);
     TEST_ASSERT_EQUAL_STRING("v1", getIDVertice(v));
-    TEST_ASSERT_EQUAL_DOUBLE(0.0, getXVertice(v));
-    TEST_ASSERT_EQUAL_DOUBLE(0.0, getYVertice(v));
+    TEST_ASSERT_EQUAL_FLOAT(0.0, getXVertice(v));
+    TEST_ASSERT_EQUAL_FLOAT(0.0, getYVertice(v));
 }
 
 int main()

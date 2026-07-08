@@ -44,41 +44,87 @@ void comandoMvm(Grafo grafo, double velocidadeNova, double x, double y, double w
     }
 }
 
+// Funções auxiliares para o Union-Find
+static int uf_find(int i, int* parent) {
+    if (parent[i] == i) return i;
+    return parent[i] = uf_find(parent[i], parent);
+}
+
+static void uf_union(int i, int j, int* parent) {
+    int root_i = uf_find(i, parent);
+    int root_j = uf_find(j, parent);
+    if (root_i != root_j) {
+        parent[root_i] = root_j;
+    }
+}
+
 void comandoRegs(FILE* txt, FILE* svg, Arvore quadras, Grafo grafo, double vInsuficiente){
-    (void)quadras; /* reservado para uso futuro */
-    //considera insuficiente os trechos com velocidade vInsuficiente
-    int contador = 0;
+    (void)quadras; 
+    
     int n = getNumVerticesGrafo(grafo);
+    if (n == 0) return;
+
+    int* parent = malloc(n * sizeof(int));
+    int* ativo = calloc(n, sizeof(int));
+
+    for(int i = 0; i < n; i++) {
+        parent[i] = i;
+    }
+
     for(int i = 0; i < n; i++){
         void* cel = getPrimeiraArestaGrafo(grafo, i);
         while(cel != NULL){
-            Aresta a   = getDadosAresta(cel);
-            double vAntiga = getVmAresta(a);
-            if(vAntiga < vInsuficiente){
-                contador++;
-                calcularBoundingBox(svg, a);
+            Aresta a = getDadosAresta(cel);
+            int destino = getDestinoAresta(cel);
+            
+            if(getVmAresta(a) < vInsuficiente){
+                uf_union(i, destino, parent);
+                ativo[i] = 1;
+                ativo[destino] = 1;
             }
             cel = getProximaAresta(cel);
         }
     }
-    fprintf(txt,"Quantidade de ruas com velocidade insuficiente : %d\n", contador);
 
-}
-
-void calcularBoundingBox(FILE* svg,Aresta a){
-    if(a == NULL){
-        printf("Erro em calcularBoundingBox\n");
-        return;
+    double *minX = malloc(n * sizeof(double));
+    double *minY = malloc(n * sizeof(double));
+    double *maxX = malloc(n * sizeof(double));
+    double *maxY = malloc(n * sizeof(double));
+    for (int i = 0; i < n; i++) {
+        minX[i] = minY[i] = 1e18;
+        maxX[i] = maxY[i] = -1e18; 
     }
-    Vertice v1 = getVerticeV1(a);
-    double x1 = getXVertice(v1);
-    double y1 = getYVertice(v1);
 
-    Vertice v2 = getVerticeV2(a);
-    double x2 = getXVertice(v2);
-    double y2 = getYVertice(v2);
+    for (int i = 0; i < n; i++) {
+        if (ativo[i]) {
+            int raiz = uf_find(i, parent);
+            Vertice v = getVerticeGrafo(grafo, i);
+            double x = getXVertice(v);
+            double y = getYVertice(v);
 
-    svgComandoRegs(svg,x1,y1, x2,y2);
+            if (x < minX[raiz]) minX[raiz] = x;
+            if (y < minY[raiz]) minY[raiz] = y;
+            if (x > maxX[raiz]) maxX[raiz] = x;
+            if (y > maxY[raiz]) maxY[raiz] = y;
+        }
+    }
+
+    int contador = 0;
+    const char* cores[] = {"red", "green", "blue", "orange", "purple", "cyan", "magenta"};
+    int numCores = 7;
+
+    for (int i = 0; i < n; i++) {
+        if (uf_find(i, parent) == i && ativo[i]) {
+            contador++;
+            const char* cor = cores[contador % numCores];
+            svgComandoRegs(svg, minX[i], minY[i], maxX[i], maxY[i], cor);
+        }
+    }
+
+    fprintf(txt,"Quantidade de componentes conexos : %d\n", contador);
+
+    free(minX); free(minY); free(maxX); free(maxY);
+    free(parent); free(ativo);
 }
 
 void comandoExp(FILE* svg, Grafo grafo, Arvore quadras, double velocidade){
@@ -100,10 +146,6 @@ void comandoExp(FILE* svg, Grafo grafo, Arvore quadras, double velocidade){
     }
 }
 
-/* -----------------------------------------------------------------------
- * Funções auxiliares para o Dijkstra (comando p?)
- * -----------------------------------------------------------------------*/
-
 /* Calcula a posição geográfica (px,py) de um registrador a partir da quadra */
 static void getPosicaoRegistrador(Registrador r, Arvore quadras, double* px, double* py) {
     char* cep  = getCepRegistrador(r);
@@ -122,7 +164,6 @@ static void getPosicaoRegistrador(Registrador r, Arvore quadras, double* px, dou
     else                                  { *px = x + w;         *py = (y + h) - num; }
 }
 
-/* Retorna o índice do vértice mais próximo de (px,py) no grafo */
 static int encontrarVerticeProximo(Grafo grafo, double px, double py) {
     int n       = getNumVerticesGrafo(grafo);
     int nearest = 0;
@@ -138,14 +179,8 @@ static int encontrarVerticeProximo(Grafo grafo, double px, double py) {
     return nearest;
 }
 
-/* Tipo de custo para o Dijkstra */
 typedef enum { CUSTO_DISTANCIA = 0, CUSTO_TEMPO = 1 } TipoCusto;
 
-/* Dijkstra generalizado.
- * tipo         : CUSTO_DISTANCIA (comprimento) ou CUSTO_TEMPO (cmp/vm)
- * dist[]       : distância mínima de 'origem' a cada vértice
- * pred[]       : predecessor no caminho mínimo
- * predAresta[] : aresta usada para chegar a cada vértice */
 static void dijkstra(Grafo grafo, int origem, TipoCusto tipo,
                      double* dist, int* pred, Aresta* predAresta) {
     int n = getNumVerticesGrafo(grafo);
@@ -188,8 +223,6 @@ static void dijkstra(Grafo grafo, int origem, TipoCusto tipo,
     liberarFila(fila);
 }
 
-/* Determina a direção de uma virada usando produto vetorial.
- * Sistema SVG: Y cresce para baixo — cross > 0 é direita na tela. */
 static const char* direcaoVirada(double ax, double ay,
                                   double bx, double by,
                                   double cx, double cy) {
@@ -201,8 +234,6 @@ static const char* direcaoVirada(double ax, double ay,
     return "frente";
 }
 
-/* Reconstrói o caminho do destino até a origem e o inverte.
- * Retorna o número de vértices no caminho. */
 static int reconstruirCaminho(int* pred, int idxEnd, int n, int* caminho) {
     int tam = 0;
     for (int v = idxEnd; v != -1; v = pred[v]) {
@@ -215,12 +246,7 @@ static int reconstruirCaminho(int* pred, int idxEnd, int n, int* caminho) {
     return tam;
 }
 
-
-
-/* Escreve as instrucoes de navegacao passo-a-passo no arquivo TXT */
-static void gerarInstrucoes(FILE* txt, Grafo grafo,
-                             int* caminho, int tam,
-                             Aresta* predAresta, TipoCusto tipo, double custo) {
+static void gerarInstrucoes(FILE* txt, Grafo grafo,int* caminho, int tam,Aresta* predAresta, TipoCusto tipo, double custo) {
     if (tam < 2) return;
 
     if (tipo == CUSTO_DISTANCIA)
@@ -256,7 +282,6 @@ static void gerarInstrucoes(FILE* txt, Grafo grafo,
         fprintf(txt, "Voce chegou ao seu destino!\tTempo total:%.1f minutos\n\n", custo / 60.0);
 }
 
-/* Extrai coordenadas do caminho e delega a animacao para svgAnimarCaminho */
 static void animarCaminhoSVG(FILE* svg, Grafo grafo, int* caminho, int tam,
                               char* corLinha, char* corPonto,
                               double dur, char* animId) {
@@ -273,11 +298,6 @@ static void animarCaminhoSVG(FILE* svg, Grafo grafo, int* caminho, int tam,
     free(ys);
 }
 
-/* -----------------------------------------------------------------------
- * comandoP — rotas de menor distancia e menor tempo com instrucoes de navegacao
- * cc = cor da rota distancia no SVG, cr = cor dos marcadores I/F
- * Rota de menor tempo desenhada em azul para contraste.
- * -----------------------------------------------------------------------*/
 void comandoP(FILE* svg, FILE* txt, Arvore quadras, Grafo grafo,
               Registrador reg1, Registrador reg2, char* cc, char* cr) {
     if (!getAtivoRegistrador(reg1) || !getAtivoRegistrador(reg2)) {
@@ -310,7 +330,6 @@ void comandoP(FILE* svg, FILE* txt, Arvore quadras, Grafo grafo,
         return;
     }
 
-    /* --- Rota de menor distancia (ponto amarelo em 10s) --- */
     dijkstra(grafo, idxStart, CUSTO_DISTANCIA, distD, predD, arestD);
     if (distD[idxEnd] < 1e17) {
         int tam = reconstruirCaminho(predD, idxEnd, n, caminho);
@@ -320,11 +339,10 @@ void comandoP(FILE* svg, FILE* txt, Arvore quadras, Grafo grafo,
         fprintf(txt, "Rota de menor distancia: caminho nao encontrado.\n\n");
     }
 
-    /* --- Rota de menor tempo (ponto ciano em 10s) --- */
     dijkstra(grafo, idxStart, CUSTO_TEMPO, distT, predT, arestT);
     if (distT[idxEnd] < 1e17) {
         int tam = reconstruirCaminho(predT, idxEnd, n, caminho);
-        animarCaminhoSVG(svg, grafo, caminho, tam, "blue", "cyan", 10.0, "routeTempo");
+        animarCaminhoSVG(svg, grafo, caminho, tam, cr, "cyan", 10.0, "routeTempo");
         gerarInstrucoes(txt, grafo, caminho, tam, arestT, CUSTO_TEMPO, distT[idxEnd]);
     } else {
         fprintf(txt, "Rota de menor tempo: caminho nao encontrado.\n\n");
@@ -340,9 +358,6 @@ void comandoP(FILE* svg, FILE* txt, Arvore quadras, Grafo grafo,
     free(distT); free(predT); free(arestT);
     free(caminho);
 }
-
-/* -----------------------------------------------------------------------*/
-
 
 void lerQry(FILE* qry, FILE* svg, FILE* txt, Arvore quadras, Grafo grafo, Registrador regs[]){
     if (qry == NULL || svg == NULL || txt == NULL || quadras == NULL || grafo == NULL){
