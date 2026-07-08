@@ -33,11 +33,18 @@ void comandoMvm(Grafo grafo, double velocidadeNova, double x, double y, double w
         double vy = getYVertice(vOrigem);
 
         if(vx >= x && vx <= x+w && vy >= y && vy <= y+h){
-            // origem está dentro — atualiza todas as arestas saindo desse vértice
+            // origem está dentro — verifica cada aresta
             void* cel = getPrimeiraArestaGrafo(grafo, i);
             while(cel != NULL){
-                Aresta a = getDadosAresta(cel);
-                setVmAresta(a, velocidadeNova);
+                int destino = getDestinoAresta(cel);
+                Vertice vDest = getVerticeGrafo(grafo, destino);
+                double dx = getXVertice(vDest);
+                double dy = getYVertice(vDest);
+                // só atualiza se o destino também está dentro da região
+                if(dx >= x && dx <= x+w && dy >= y && dy <= y+h){
+                    Aresta a = getDadosAresta(cel);
+                    setVmAresta(a, velocidadeNova);
+                }
                 cel = getProximaAresta(cel);
             }
         }
@@ -58,63 +65,112 @@ static void uf_union(int i, int j, int* parent) {
     }
 }
 
+typedef struct {
+    int origem;
+    int destino;
+    char nome[128];
+    int id;
+} EdgeInfo;
+
+static int cmpEdge(const void* a, const void* b) {
+    return strcmp(((EdgeInfo*)a)->nome, ((EdgeInfo*)b)->nome);
+}
+
 void comandoRegs(FILE* txt, FILE* svg, Arvore quadras, Grafo grafo, double vInsuficiente){
     (void)quadras; 
     
     int n = getNumVerticesGrafo(grafo);
     if (n == 0) return;
 
-    int* parent = malloc(n * sizeof(int));
-    int* ativo = calloc(n, sizeof(int));
-
-    for(int i = 0; i < n; i++) {
-        parent[i] = i;
+    int nEdges = 0;
+    for(int i = 0; i < n; i++){
+        void* cel = getPrimeiraArestaGrafo(grafo, i);
+        while(cel != NULL){
+            Aresta a = getDadosAresta(cel);
+            if(getVmAresta(a) < vInsuficiente) nEdges++;
+            cel = getProximaAresta(cel);
+        }
     }
+
+    if(nEdges == 0) {
+        fprintf(txt,"Quantidade de componentes conexos : 0\n");
+        return;
+    }
+
+    EdgeInfo* edges = malloc(nEdges * sizeof(EdgeInfo));
+    int* parent = malloc(nEdges * sizeof(int));
+    int idx = 0;
 
     for(int i = 0; i < n; i++){
         void* cel = getPrimeiraArestaGrafo(grafo, i);
         while(cel != NULL){
             Aresta a = getDadosAresta(cel);
-            int destino = getDestinoAresta(cel);
-            
             if(getVmAresta(a) < vInsuficiente){
-                uf_union(i, destino, parent);
-                ativo[i] = 1;
-                ativo[destino] = 1;
+                edges[idx].origem = i;
+                edges[idx].destino = getDestinoAresta(cel);
+                char* nomeAresta = getNomeAresta(a);
+                if(nomeAresta) strncpy(edges[idx].nome, nomeAresta, 127);
+                else edges[idx].nome[0] = '\0';
+                edges[idx].nome[127] = '\0';
+                edges[idx].id = idx;
+                parent[idx] = idx;
+                idx++;
             }
             cel = getProximaAresta(cel);
         }
     }
 
-    double *minX = malloc(n * sizeof(double));
-    double *minY = malloc(n * sizeof(double));
-    double *maxX = malloc(n * sizeof(double));
-    double *maxY = malloc(n * sizeof(double));
-    for (int i = 0; i < n; i++) {
+    qsort(edges, nEdges, sizeof(EdgeInfo), cmpEdge);
+
+    for (int i = 0; i < nEdges; i++) {
+        for (int j = i + 1; j < nEdges; j++) {
+            if (strcmp(edges[i].nome, edges[j].nome) != 0) break;
+            
+            if (edges[i].origem == edges[j].origem || 
+                edges[i].origem == edges[j].destino || 
+                edges[i].destino == edges[j].origem || 
+                edges[i].destino == edges[j].destino) {
+                uf_union(edges[i].id, edges[j].id, parent);
+            }
+        }
+    }
+
+    double *minX = malloc(nEdges * sizeof(double));
+    double *minY = malloc(nEdges * sizeof(double));
+    double *maxX = malloc(nEdges * sizeof(double));
+    double *maxY = malloc(nEdges * sizeof(double));
+    for (int i = 0; i < nEdges; i++) {
         minX[i] = minY[i] = 1e18;
         maxX[i] = maxY[i] = -1e18; 
     }
 
-    for (int i = 0; i < n; i++) {
-        if (ativo[i]) {
-            int raiz = uf_find(i, parent);
-            Vertice v = getVerticeGrafo(grafo, i);
-            double x = getXVertice(v);
-            double y = getYVertice(v);
+    for (int i = 0; i < nEdges; i++) {
+        int raiz = uf_find(edges[i].id, parent);
+        Vertice vOrig = getVerticeGrafo(grafo, edges[i].origem);
+        Vertice vDest = getVerticeGrafo(grafo, edges[i].destino);
+        
+        double x1 = getXVertice(vOrig);
+        double y1 = getYVertice(vOrig);
+        double x2 = getXVertice(vDest);
+        double y2 = getYVertice(vDest);
 
-            if (x < minX[raiz]) minX[raiz] = x;
-            if (y < minY[raiz]) minY[raiz] = y;
-            if (x > maxX[raiz]) maxX[raiz] = x;
-            if (y > maxY[raiz]) maxY[raiz] = y;
-        }
+        if (x1 < minX[raiz]) minX[raiz] = x1;
+        if (y1 < minY[raiz]) minY[raiz] = y1;
+        if (x1 > maxX[raiz]) maxX[raiz] = x1;
+        if (y1 > maxY[raiz]) maxY[raiz] = y1;
+        
+        if (x2 < minX[raiz]) minX[raiz] = x2;
+        if (y2 < minY[raiz]) minY[raiz] = y2;
+        if (x2 > maxX[raiz]) maxX[raiz] = x2;
+        if (y2 > maxY[raiz]) maxY[raiz] = y2;
     }
 
     int contador = 0;
     const char* cores[] = {"red", "green", "blue", "orange", "purple", "cyan", "magenta"};
     int numCores = 7;
 
-    for (int i = 0; i < n; i++) {
-        if (uf_find(i, parent) == i && ativo[i]) {
+    for (int i = 0; i < nEdges; i++) {
+        if (uf_find(i, parent) == i) {
             contador++;
             const char* cor = cores[contador % numCores];
             svgComandoRegs(svg, minX[i], minY[i], maxX[i], maxY[i], cor);
@@ -124,7 +180,7 @@ void comandoRegs(FILE* txt, FILE* svg, Arvore quadras, Grafo grafo, double vInsu
     fprintf(txt,"Quantidade de componentes conexos : %d\n", contador);
 
     free(minX); free(minY); free(maxX); free(maxY);
-    free(parent); free(ativo);
+    free(parent); free(edges);
 }
 
 void comandoExp(FILE* svg, Grafo grafo, Arvore quadras, double velocidade){

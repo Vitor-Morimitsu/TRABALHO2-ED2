@@ -98,8 +98,8 @@ int main(int argc, char* argv[]) {
         extrairBaseName(qryPath, qryBase, sizeof(qryBase));
 
         char qrySvgPath[512], qryTxtPath[512];
-        snprintf(qrySvgPath, sizeof(qrySvgPath), "%s/%s.svg", outDir, qryBase);
-        snprintf(qryTxtPath, sizeof(qryTxtPath), "%s/%s.txt", outDir, qryBase);
+        snprintf(qrySvgPath, sizeof(qrySvgPath), "%s/%s-%s.svg", outDir, geoBase, qryBase);
+        snprintf(qryTxtPath, sizeof(qryTxtPath), "%s/%s-%s.txt", outDir, geoBase, qryBase);
 
         FILE* qrySvg = fopen(qrySvgPath, "w");
         if (!qrySvg) { fprintf(stderr, "Erro ao criar %s\n", qrySvgPath); goto cleanup; }
