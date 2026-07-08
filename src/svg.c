@@ -7,7 +7,7 @@ void abrirSvg(FILE* arqSvg){
     fprintf(arqSvg, "<svg xmlns:svg=\"http://www.w3.org/2000/svg\" "
             "xmlns=\"http://www.w3.org/2000/svg\" "
             "xmlns:xlink=\"http://www.w3.org/1999/xlink\" "
-            "version=\"1.1\" width=\"1500\" height=\"1500\">\n");
+            "version=\"1.1\" width=\"12000\" height=\"5000\">\n");
 }
 
 void desenharRetanguloSVG(FILE* arqSvg, Quadra q){
