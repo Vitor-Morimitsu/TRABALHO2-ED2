@@ -127,6 +127,16 @@ void svgComandoO(FILE* svg, double x, double y, int numRegistrador) {
 /* Bounding box de componente conexo — retângulo colorido com 50% de transparência */
 void svgComandoRegs(FILE* svg, double minX, double minY, double maxX, double maxY, const char* cor) {
     if (!svg) return;
+    
+    if (maxX - minX < 5.0) {
+        minX -= 5.0;
+        maxX += 5.0;
+    }
+    if (maxY - minY < 5.0) {
+        minY -= 5.0;
+        maxY += 5.0;
+    }
+    
     double bw = maxX - minX;
     double bh = maxY - minY;
     fprintf(svg, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" "

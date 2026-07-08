@@ -26,29 +26,84 @@ void comandoO(FILE* svg, FILE* txt, int numRegistrador, char* cep, char face, in
 
 void comandoMvm(Grafo grafo, double velocidadeNova, double x, double y, double w, double h){
     int n = getNumVerticesGrafo(grafo);
+    
+    int numInvalidNames = 0;
+    char** invalidNames = malloc(n * 4 * sizeof(char*));
+    
     for(int i = 0; i < n; i++){
-        // verifica se o vértice de origem está dentro da região
+        Vertice v = getVerticeGrafo(grafo, i);
+        double vx = getXVertice(v);
+        double vy = getYVertice(v);
+        int inside = (vx >= x && vx <= x+w && vy >= y && vy <= y+h);
+        
+        void* cel = getPrimeiraArestaGrafo(grafo, i);
+        while(cel != NULL){
+            Aresta a = getDadosAresta(cel);
+            char* nome = getNomeAresta(a);
+            
+            if (nome != NULL && strcmp(nome, "") != 0 && strcmp(nome, "-") != 0 && strcmp(nome, ".") != 0) {
+                int destino = getDestinoAresta(cel);
+                Vertice vDest = getVerticeGrafo(grafo, destino);
+                double dx = getXVertice(vDest);
+                double dy = getYVertice(vDest);
+                int destInside = (dx >= x && dx <= x+w && dy >= y && dy <= y+h);
+                
+                if (!inside || !destInside) {
+                    int found = 0;
+                    for (int k = 0; k < numInvalidNames; k++) {
+                        if (strcmp(invalidNames[k], nome) == 0) {
+                            found = 1; break;
+                        }
+                    }
+                    if (!found) {
+                        invalidNames[numInvalidNames] = malloc(strlen(nome) + 1);
+                        strcpy(invalidNames[numInvalidNames], nome);
+                        numInvalidNames++;
+                    }
+                }
+            }
+            cel = getProximaAresta(cel);
+        }
+    }
+    
+    for(int i = 0; i < n; i++){
         Vertice vOrigem = getVerticeGrafo(grafo, i);
         double vx = getXVertice(vOrigem);
         double vy = getYVertice(vOrigem);
 
         if(vx >= x && vx <= x+w && vy >= y && vy <= y+h){
-            // origem está dentro — verifica cada aresta
             void* cel = getPrimeiraArestaGrafo(grafo, i);
             while(cel != NULL){
                 int destino = getDestinoAresta(cel);
                 Vertice vDest = getVerticeGrafo(grafo, destino);
                 double dx = getXVertice(vDest);
                 double dy = getYVertice(vDest);
-                // só atualiza se o destino também está dentro da região
                 if(dx >= x && dx <= x+w && dy >= y && dy <= y+h){
                     Aresta a = getDadosAresta(cel);
-                    setVmAresta(a, velocidadeNova);
+                    char* nome = getNomeAresta(a);
+                    
+                    int isInvalid = 0;
+                    if (nome != NULL && strcmp(nome, "") != 0 && strcmp(nome, "-") != 0 && strcmp(nome, ".") != 0) {
+                        for (int k = 0; k < numInvalidNames; k++) {
+                            if (strcmp(invalidNames[k], nome) == 0) {
+                                isInvalid = 1; break;
+                            }
+                        }
+                    }
+                    
+                    if (!isInvalid) {
+                        setVmAresta(a, velocidadeNova);
+                    }
                 }
                 cel = getProximaAresta(cel);
             }
         }
     }
+    
+    for (int k = 0; k < numInvalidNames; k++) {
+        free(invalidNames[k]);
+    }
+    free(invalidNames);
 }
 
 // Funções auxiliares para o Union-Find
@@ -87,7 +142,10 @@ void comandoRegs(FILE* txt, FILE* svg, Arvore quadras, Grafo grafo, double vInsu
         void* cel = getPrimeiraArestaGrafo(grafo, i);
         while(cel != NULL){
             Aresta a = getDadosAresta(cel);
-            if(getVmAresta(a) < vInsuficiente) nEdges++;
+            char* nome = getNomeAresta(a);
+            if (nome != NULL && strcmp(nome, "") != 0 && strcmp(nome, "-") != 0 && strcmp(nome, ".") != 0) {
+                if(getVmAresta(a) < vInsuficiente) nEdges++;
+            }
             cel = getProximaAresta(cel);
         }
     }
@@ -105,16 +163,17 @@ void comandoRegs(FILE* txt, FILE* svg, Arvore quadras, Grafo grafo, double vInsu
         void* cel = getPrimeiraArestaGrafo(grafo, i);
         while(cel != NULL){
             Aresta a = getDadosAresta(cel);
-            if(getVmAresta(a) < vInsuficiente){
-                edges[idx].origem = i;
-                edges[idx].destino = getDestinoAresta(cel);
-                char* nomeAresta = getNomeAresta(a);
-                if(nomeAresta) strncpy(edges[idx].nome, nomeAresta, 127);
-                else edges[idx].nome[0] = '\0';
-                edges[idx].nome[127] = '\0';
-                edges[idx].id = idx;
-                parent[idx] = idx;
-                idx++;
+            char* nomeAresta = getNomeAresta(a);
+            if (nomeAresta != NULL && strcmp(nomeAresta, "") != 0 && strcmp(nomeAresta, "-") != 0 && strcmp(nomeAresta, ".") != 0) {
+                if(getVmAresta(a) < vInsuficiente){
+                    edges[idx].origem = i;
+                    edges[idx].destino = getDestinoAresta(cel);
+                    strncpy(edges[idx].nome, nomeAresta, 127);
+                    edges[idx].nome[127] = '\0';
+                    edges[idx].id = idx;
+                    parent[idx] = idx;
+                    idx++;
+                }
             }
             cel = getProximaAresta(cel);
         }
@@ -125,7 +184,6 @@ void comandoRegs(FILE* txt, FILE* svg, Arvore quadras, Grafo grafo, double vInsu
     for (int i = 0; i < nEdges; i++) {
         for (int j = i + 1; j < nEdges; j++) {
             if (strcmp(edges[i].nome, edges[j].nome) != 0) break;
-            
             if (edges[i].origem == edges[j].origem || 
                 edges[i].origem == edges[j].destino || 
                 edges[i].destino == edges[j].origem || 
@@ -171,9 +229,21 @@ void comandoRegs(FILE* txt, FILE* svg, Arvore quadras, Grafo grafo, double vInsu
 
     for (int i = 0; i < nEdges; i++) {
         if (uf_find(i, parent) == i) {
-            contador++;
-            const char* cor = cores[contador % numCores];
-            svgComandoRegs(svg, minX[i], minY[i], maxX[i], maxY[i], cor);
+            if(minX[i] != 1e18){
+                double width = maxX[i] - minX[i];
+                double height = maxY[i] - minY[i];
+                if (width < 5.0) {
+                    minX[i] -= 5.0;
+                    maxX[i] += 5.0;
+                }
+                if (height < 5.0) {
+                    minY[i] -= 5.0;
+                    maxY[i] += 5.0;
+                }
+                contador++;
+                const char* cor = cores[contador % numCores];
+                svgComandoRegs(svg, minX[i], minY[i], maxX[i], maxY[i], cor);
+            }
         }
     }
 

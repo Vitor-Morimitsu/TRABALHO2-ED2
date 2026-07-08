@@ -1,0 +1,75 @@
+Quantidade de componentes conexos : 8
+R1: cep=b010.8 face=O num=28 coord=(1160.00, 1002.00)
+R2: cep=b03.1 face=L num=6 coord=(95.00, 359.00)
+Rota de menor distancia encontrada! Instrucoes:
+Siga pela rua Young_St
+Siga em frente na rua .
+Vire a direita na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Vire a direita na rua .
+Siga em frente na rua Yukon_St
+Siga em frente na rua Yukon_St
+Siga em frente na rua Yukon_St
+Siga em frente na rua Yukon_St
+Siga em frente na rua Yukon_St
+Siga em frente na rua Yukon_St
+Siga em frente na rua Yukon_St
+Siga em frente na rua Yukon_St
+Siga em frente na rua Yukon_St
+Siga em frente na rua Yukon_St
+Siga em frente na rua Yukon_St
+Siga em frente na rua Yukon_St
+Siga em frente na rua Yukon_St
+Siga em frente na rua Yukon_St
+Vire a esquerda na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Voce chegou ao seu destino!	Distancia total:1783.25 metros
+
+Rota de menor tempo encontrada! Instrucoes:
+Siga pela rua Young_St
+Siga em frente na rua .
+Vire a direita na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Siga em frente na rua Perimetral_Norte
+Vire a direita na rua .
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Siga em frente na rua Zoe_St
+Vire a esquerda na rua Yerba_Buena_Ln
+Siga em frente na rua Yerba_Buena_Ln
+Voce chegou ao seu destino!	Tempo total:4.1 minutos
+
